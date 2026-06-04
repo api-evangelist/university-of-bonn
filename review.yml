@@ -1,0 +1,42 @@
+---
+name: University of Bonn
+description: University of Bonn public developer/API footprint review for APIs.json cataloging.
+url: https://raw.githubusercontent.com/api-evangelist/university-of-bonn/refs/heads/main/review.yml
+created: '2026-06-03'
+modified: '2026-06-03'
+reviews:
+  - date: '2026-06-03'
+    rating: 3
+    summary: >-
+      Verified live the bonndata Dataverse Native REST search API (returned JSON
+      with 362 indexed records) and the bonndata OAI-PMH endpoint (verb=Identify
+      returned a valid OAI-PMH response). Confirmed the official unibonn GitHub
+      organization exists with 158 public repositories. The official website,
+      ULB Bonn library, and City of Bonn open data portal all resolve. No
+      separately branded university developer portal, public student/timetable
+      SIS API, or documented library Alma/Primo public API was found; those
+      systems run on standard vendor platforms without published public dev
+      docs. No endpoints were fabricated; all cataloged APIs are standard
+      Dataverse interfaces confirmed against the live host.
+    endpoints:
+      - url: https://bonndata.uni-bonn.de/api/search?q=*&type=dataset
+        status: 200
+        note: Dataverse Native search API; returned JSON, total_count 362.
+      - url: https://bonndata.uni-bonn.de/oai?verb=Identify
+        status: 200
+        note: OAI-PMH endpoint; valid OAI-PMH XML response.
+      - url: https://github.com/unibonn
+        status: 200
+        note: Official GitHub org, 158 public repos (Rheinische Friedrich-Wilhelms-Universität Bonn).
+      - url: https://www.uni-bonn.de/en
+        status: 200
+        note: Official university website (English).
+      - url: https://www.ulb.uni-bonn.de/en
+        status: 200
+        note: University and State Library (ULB Bonn); Alma/Primo, no public dev portal found.
+      - url: https://www.hrz.uni-bonn.de/en/all-services/data-storage-fileservices/bonndata
+        status: 200
+        note: University IT and Data Center page describing bonndata repository.
+      - url: https://opendata.bonn.de/
+        status: 200
+        note: City of Bonn open data portal (municipal, not the university itself).

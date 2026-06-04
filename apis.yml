@@ -1,0 +1,79 @@
+---
+aid: university-of-bonn
+name: University of Bonn
+description: >-
+  The University of Bonn (Rheinische Friedrich-Wilhelms-Universität Bonn) is a
+  public research university in Bonn, Germany, ranked #227 in the QS World
+  University Rankings 2025. Its primary public, machine-readable developer
+  footprint is bonndata, the institutional cross-disciplinary research data
+  repository built on the open-source Dataverse platform, which exposes a public
+  Dataverse Native REST API and an OAI-PMH metadata harvesting endpoint. The
+  university also maintains an official GitHub organization (unibonn) with code
+  from across the institution. Most other systems (library Alma/Primo discovery,
+  identity/SSO, student information systems) are operated through standard vendor
+  platforms without separately published public developer portals.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/university-of-bonn/refs/heads/main/apis.yml
+tags:
+  - Education
+  - Higher Education
+  - University
+  - Research Data
+  - Open Data
+  - Germany
+created: '2026-06-03'
+modified: '2026-06-03'
+specificationVersion: '0.19'
+apis:
+  - aid: university-of-bonn:bonndata-native-api
+    name: bonndata Dataverse Native REST API
+    description: >-
+      Public REST search and data-access API for bonndata, the University of
+      Bonn institutional research data repository running on Dataverse. The
+      search endpoint returns JSON listings of published datasets and files
+      (verified live, 362+ indexed records). Follows the standard Dataverse
+      Native API specification.
+    humanURL: https://guides.dataverse.org/en/latest/api/native-api.html
+    baseURL: https://bonndata.uni-bonn.de/api
+    tags: [ Research Data, Dataverse, REST, Open Data ]
+    properties:
+      - type: Documentation
+        url: https://guides.dataverse.org/en/latest/api/native-api.html
+      - type: Website
+        url: https://bonndata.uni-bonn.de/
+  - aid: university-of-bonn:bonndata-oai-pmh
+    name: bonndata OAI-PMH Metadata Endpoint
+    description: >-
+      OAI-PMH (Open Archives Initiative Protocol for Metadata Harvesting)
+      endpoint for the bonndata repository, supporting metadata harvesting of
+      published research datasets (verified live via verb=Identify). Supports
+      DataCite, Dublin Core, OAI-ORE and OpenAIRE metadata formats.
+    humanURL: https://guides.dataverse.org/en/latest/admin/harvestserver.html
+    baseURL: https://bonndata.uni-bonn.de/oai
+    tags: [ Research Data, OAI-PMH, Metadata Harvesting, Open Data ]
+    properties:
+      - type: Documentation
+        url: https://guides.dataverse.org/en/latest/admin/harvestserver.html
+      - type: Website
+        url: https://bonndata.uni-bonn.de/
+common:
+  - type: Website
+    url: https://www.uni-bonn.de/en
+  - type: GitHub
+    url: https://github.com/unibonn
+  - type: LinkedIn
+    url: https://www.linkedin.com/school/university-of-bonn/
+  - type: Plans
+    url: plans/university-of-bonn-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/university-of-bonn-rate-limits.yml
+  - type: FinOps
+    url: finops/university-of-bonn-finops.yml
+  - type: Review
+    url: review.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
