@@ -1,0 +1,56 @@
+{
+  "status": "OK",
+  "data": {
+    "q": "*",
+    "total_count": 362,
+    "start": 0,
+    "spelling_alternatives": {},
+    "items": [
+      {
+        "name": "Probability of Habitat Suitability for Stem Borer Pests and Natural Enemies in Kenya and Tanzania Under Current Climatic Conditions (1970-2000) and Different Climate Change Scenarios (2041-2060, 2081-2100)",
+        "type": "dataset",
+        "url": "https://doi.org/10.60507/FK2/BBP6GG",
+        "global_id": "doi:10.60507/FK2/BBP6GG",
+        "description": "The research within the scope of which the presented data was generated was part of the funding initiative ‘Knowledge for Tomorrow-Cooperative Research Project in sub-Saharan Africa on Resource, their Dynamics, and Sustainability’ funded by the Volkswagen Foundation. The overall study aimed at investigating the uncertainties in the effectiveness of biological control of stem borers under different climate change scenarios in Kenya and Tanzania. Using the species distribution modelling approach MaxEnt, the research predicts the current and future distribution of three important lepidopteran stem borer pests of maize in eastern Africa, i.e., Busseola fusca (Fuller, 1901), Chilo partellus (Swinhoe, 1885) and Sesamia calamistis (Hampson, 1910), and two of their parasitoids used for biological control, i.e., Cotesia flavipes (Cameron, 1891) and Cotesia sesamiae (Cameron, 1906). Based on these potential distributions and data collected during household surveys with local farmers in Kenya and Tanzania, future maize yield losses are predicted considering three different Global Circulation Models (GCMs) for four different Shared Socioeconomic Pathway (SSP) scenarios (SSP1-2.6, SSP2-4.5, SSP 3-7.0, SSP5-8.5) and two time periods, i.e., 2041-2060 and 2081-2100. A raster in which probability of habitat suitability is separately specified for each grid cell is the immediate output from species distribution modelling with MaxEnt. Probability of habitat suitability for the respective species hereby is expressed as probability value ranging between 0 (unsuitable habitat) to 1 (perfectly suitable habitat). Probability of habitat suitability was modelled for five species for current climatic conditions, as well as for four SSPs and two time periods. Quality/Lineage: The generated data is based on a collection of presence points from different sources and environmental data from WorldClim. Species Distribution Models (SDMs) have been built using the 'kuenm' package in RStudio. The data on probability of habitat suitability are an immediate output from SDM in R. Habitat suitability is here given as multi-model average of predictions for three Global Circulation Models (GCMs) from CMIP6: CanESM5, CNRM-CM6-1 and MIROC6",
+        "published_at": "2023-09-18T10:29:50Z",
+        "publisher": "ZEF: Center for Development Research",
+        "citationHtml": "Ines Jendritzki, 2023, \"Probability of Habitat Suitability for Stem Borer Pests and Natural Enemies in Kenya and Tanzania Under Current Climatic Conditions (1970-2000) and Different Climate Change Scenarios (2041-2060, 2081-2100)\", <a href=\"https://doi.org/10.60507/FK2/BBP6GG\" target=\"_blank\">https://doi.org/10.60507/FK2/BBP6GG</a>, bonndata, V1",
+        "identifier_of_dataverse": "zef",
+        "name_of_dataverse": "ZEF: Center for Development Research",
+        "citation": "Ines Jendritzki, 2023, \"Probability of Habitat Suitability for Stem Borer Pests and Natural Enemies in Kenya and Tanzania Under Current Climatic Conditions (1970-2000) and Different Climate Change Scenarios (2041-2060, 2081-2100)\", https://doi.org/10.60507/FK2/BBP6GG, bonndata, V1",
+        "publicationStatuses": [
+          "Published"
+        ],
+        "storageIdentifier": "file://10.60507/FK2/BBP6GG",
+        "subjects": [
+          "Other"
+        ],
+        "fileCount": 3,
+        "versionId": 61,
+        "versionState": "RELEASED",
+        "majorVersion": 1,
+        "minorVersion": 0,
+        "createdAt": "2023-09-18T08:53:27Z",
+        "updatedAt": "2023-09-18T10:29:50Z",
+        "contacts": [
+          {
+            "name": "Ines Jendritzki",
+            "affiliation": "Center for Development Research, Department Ecology and Natural Resources Management (ZEF C), University of Bonn"
+          }
+        ],
+        "geographicCoverage": [
+          {
+            "country": "Kenya"
+          },
+          {
+            "other": "Tanzania,"
+          }
+        ],
+        "authors": [
+          "Ines Jendritzki"
+        ]
+      }
+    ],
+    "count_in_response": 1
+  }
+}

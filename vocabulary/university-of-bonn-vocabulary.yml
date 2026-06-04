@@ -1,0 +1,76 @@
+vocabulary:
+  name: bonndata Native API Vocabulary
+  description: >-
+    Controlled vocabulary of the key terms used by the bonndata Dataverse
+    Native REST API and OAI-PMH endpoint at the University of Bonn. Definitions
+    reflect the live API (Dataverse 6.7.1) verified 2026-06-03 and the standard
+    Dataverse data model.
+  version: "1.0.0"
+  terms:
+    - term: bonndata
+      definition: >-
+        The University of Bonn institutional, cross-disciplinary research data
+        repository, built on the open-source Dataverse platform and hosted at
+        bonndata.uni-bonn.de.
+      tags: [repository, institution]
+    - term: Dataverse
+      definition: >-
+        Open-source research data repository software (developed at Harvard
+        IQSS) that powers bonndata and exposes the Native REST API.
+      tags: [platform, software]
+    - term: Dataset
+      definition: >-
+        A container of research data files plus descriptive metadata and a
+        persistent identifier; the primary published object in bonndata.
+      tags: [object, core]
+    - term: Dataverse Collection
+      definition: >-
+        A named container (alias) that holds datasets and other collections;
+        referenced in search results as name_of_dataverse / identifier_of_dataverse.
+      tags: [object, hierarchy]
+    - term: DataFile
+      definition: >-
+        An individual file belonging to a dataset version; counted by the
+        fileCount field in search results.
+      tags: [object]
+    - term: Persistent Identifier
+      definition: >-
+        A globally resolvable DOI or Handle assigned to a dataset, returned as
+        global_id (e.g. doi:10.60507/FK2/BBP6GG).
+      tags: [identifier, doi]
+    - term: Version State
+      definition: >-
+        Lifecycle state of a dataset version; published items report
+        versionState RELEASED with major/minor version numbers.
+      tags: [lifecycle]
+    - term: Subject
+      definition: >-
+        Controlled subject classification assigned to a dataset, returned in the
+        subjects array of a search item.
+      tags: [metadata, classification]
+    - term: Search
+      definition: >-
+        The /api/search endpoint returning a paginated JSON envelope of datasets,
+        collections, and files matching a query.
+      tags: [endpoint, discovery]
+    - term: Metrics
+      definition: >-
+        Aggregate counts exposed under /api/info/metrics (e.g. total published
+        dataset count, 362 verified live).
+      tags: [endpoint, statistics]
+    - term: OAI-PMH
+      definition: >-
+        Open Archives Initiative Protocol for Metadata Harvesting; the bonndata
+        /oai endpoint supports Identify, ListRecords, and other verbs over
+        Dublin Core, DataCite, OAI-ORE, and OpenAIRE metadata.
+      tags: [protocol, harvesting, metadata]
+    - term: Metadata Export
+      definition: >-
+        The /api/datasets/export endpoint that emits a dataset's metadata in a
+        named format such as schema.org, Datacite, dataverse_json, or oai_dc.
+      tags: [endpoint, interoperability]
+    - term: API Envelope
+      definition: >-
+        Standard Dataverse JSON response wrapper with a top-level status (OK or
+        ERROR) and a data payload object.
+      tags: [convention, response]

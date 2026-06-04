@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/university-of-bonn/main/json-structure/university-of-bonn-dataset-structure.json",
+  "name": "BonnDataDataset",
+  "description": "JSON Structure description of a bonndata (Dataverse) dataset search item, derived from the live Native API /search response verified 2026-06-03.",
+  "type": "object",
+  "properties": {
+    "name": { "type": "string" },
+    "type": { "type": "string" },
+    "url": { "type": "string" },
+    "global_id": { "type": "string" },
+    "description": { "type": "string" },
+    "published_at": { "type": "string", "format": "date-time" },
+    "publisher": { "type": "string" },
+    "name_of_dataverse": { "type": "string" },
+    "identifier_of_dataverse": { "type": "string" },
+    "citation": { "type": "string" },
+    "storageIdentifier": { "type": "string" },
+    "fileCount": { "type": "int32" },
+    "versionId": { "type": "int64" },
+    "versionState": { "type": "string" },
+    "majorVersion": { "type": "int32" },
+    "minorVersion": { "type": "int32" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" },
+    "subjects": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "authors": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "geographicCoverage": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "publicationStatuses": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "required": ["name", "type", "url"]
+}

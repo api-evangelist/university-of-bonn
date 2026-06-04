@@ -1,0 +1,60 @@
+extends: []
+formats:
+  - oas3
+documentationUrl: https://guides.dataverse.org/en/latest/api/native-api.html
+rules:
+  bonndata-info-title:
+    description: API title should reference bonndata / Dataverse.
+    severity: warn
+    given: $.info.title
+    then:
+      function: pattern
+      functionOptions:
+        match: "(?i)(dataverse|bonndata)"
+
+  bonndata-server-base:
+    description: Servers should point at the bonndata Native API base under /api.
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: "bonndata\\.uni-bonn\\.de/api"
+
+  bonndata-response-envelope:
+    description: >-
+      JSON responses follow the Dataverse envelope with a top-level "status"
+      property (OK/ERROR).
+    severity: warn
+    given: $.components.schemas.ApiEnvelope.properties
+    then:
+      field: status
+      function: truthy
+
+  bonndata-search-paginated:
+    description: The /search operation must expose per_page and start pagination params.
+    severity: warn
+    given: $.paths['/search'].get.parameters[*].name
+    then:
+      function: pattern
+      functionOptions:
+        match: "(q|type|per_page|start|sort|order|fq|subtree|show_relevance|show_facets|show_entity_ids|show_type_counts|geo_point|geo_radius|metadata_fields|query_entities|search_service|show_api_urls)"
+
+  bonndata-operation-id:
+    description: Every operation should carry an operationId (matches upstream Dataverse).
+    severity: warn
+    given: $.paths[*][get,post,put,delete]
+    then:
+      field: operationId
+      function: truthy
+
+  bonndata-persistent-id:
+    description: >-
+      Datasets are addressable by DOI persistent identifier; the dataset
+      retrieval operation should document the persistentId query parameter.
+    severity: info
+    given: $.paths['/datasets/{id}'].get.parameters[*].name
+    then:
+      function: pattern
+      functionOptions:
+        match: "(id|persistentId|returnOwners)"

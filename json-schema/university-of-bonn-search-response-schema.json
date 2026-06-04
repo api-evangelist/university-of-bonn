@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/university-of-bonn/main/json-schema/university-of-bonn-search-response-schema.json",
+  "title": "bonnDataSearchResponse",
+  "description": "Envelope returned by the bonndata (Dataverse) Native API /search endpoint. Modeled from a live response (total_count 362) verified 2026-06-03.",
+  "type": "object",
+  "required": ["status", "data"],
+  "properties": {
+    "status": { "type": "string", "enum": ["OK", "ERROR"] },
+    "data": {
+      "type": "object",
+      "required": ["total_count", "start", "items"],
+      "properties": {
+        "q": { "type": "string" },
+        "total_count": { "type": "integer", "minimum": 0 },
+        "start": { "type": "integer", "minimum": 0 },
+        "spelling_alternatives": { "type": "object" },
+        "count_in_response": { "type": "integer", "minimum": 0 },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "university-of-bonn-search-item-schema.json"
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

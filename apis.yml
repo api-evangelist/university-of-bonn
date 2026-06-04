@@ -44,6 +44,16 @@ apis:
         url: https://guides.dataverse.org/en/latest/api/native-api.html
       - type: Website
         url: https://bonndata.uni-bonn.de/
+      - type: OpenAPI
+        url: openapi/university-of-bonn-bonndata-native-api.yaml
+      - type: JSONSchema
+        url: json-schema/university-of-bonn-search-response-schema.json
+      - type: x-vocabulary
+        url: vocabulary/university-of-bonn-vocabulary.yml
+      - type: x-rules
+        url: rules/university-of-bonn-rules.yml
+      - type: x-json-ld
+        url: json-ld/university-of-bonn-context.jsonld
   - aid: university-of-bonn:bonndata-oai-pmh
     name: bonndata OAI-PMH Metadata Endpoint
     description: >-

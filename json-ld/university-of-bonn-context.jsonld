@@ -1,0 +1,40 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "dataverse": "https://bonndata.uni-bonn.de/vocab/",
+    "@vocab": "https://bonndata.uni-bonn.de/vocab/",
+    "University": "schema:CollegeOrUniversity",
+    "Dataset": "schema:Dataset",
+    "DataCollection": "schema:DataCatalog",
+    "name": "schema:name",
+    "description": "schema:description",
+    "url": { "@id": "schema:url", "@type": "@id" },
+    "publisher": "schema:publisher",
+    "global_id": { "@id": "schema:identifier" },
+    "published_at": { "@id": "schema:datePublished", "@type": "schema:DateTime" },
+    "createdAt": { "@id": "schema:dateCreated", "@type": "schema:DateTime" },
+    "updatedAt": { "@id": "schema:dateModified", "@type": "schema:DateTime" },
+    "authors": { "@id": "schema:creator", "@container": "@set" },
+    "subjects": { "@id": "schema:about", "@container": "@set" },
+    "geographicCoverage": { "@id": "schema:spatialCoverage", "@container": "@set" },
+    "citation": "schema:citation",
+    "fileCount": "dataverse:fileCount",
+    "name_of_dataverse": "dataverse:collectionName",
+    "identifier_of_dataverse": "dataverse:collectionAlias",
+    "versionState": "dataverse:versionState",
+    "majorVersion": "dataverse:majorVersion",
+    "minorVersion": "dataverse:minorVersion",
+    "storageIdentifier": "dataverse:storageIdentifier"
+  },
+  "@type": "University",
+  "name": "University of Bonn",
+  "alternateName": "Rheinische Friedrich-Wilhelms-Universität Bonn",
+  "url": "https://www.uni-bonn.de/en",
+  "dataverse:repository": {
+    "@type": "DataCollection",
+    "name": "bonndata",
+    "description": "Institutional cross-disciplinary research data repository of the University of Bonn, built on Dataverse.",
+    "url": "https://bonndata.uni-bonn.de/"
+  }
+}

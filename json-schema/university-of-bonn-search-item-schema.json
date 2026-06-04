@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/university-of-bonn/main/json-schema/university-of-bonn-search-item-schema.json",
+  "title": "bonnDataSearchItem",
+  "description": "A single item returned by the bonndata (Dataverse) Native API /search endpoint. Field set modeled from a live dataset hit verified 2026-06-03.",
+  "type": "object",
+  "required": ["name", "type", "url"],
+  "properties": {
+    "name": { "type": "string", "description": "Title of the dataset, dataverse, or file." },
+    "type": {
+      "type": "string",
+      "description": "Content type of the hit.",
+      "enum": ["dataset", "dataverse", "file"]
+    },
+    "url": { "type": "string", "format": "uri", "description": "Resolvable URL (DOI for datasets)." },
+    "global_id": { "type": "string", "description": "Persistent identifier, e.g. doi:10.60507/FK2/BBP6GG." },
+    "description": { "type": "string", "description": "Dataset abstract / description." },
+    "published_at": { "type": "string", "format": "date-time" },
+    "publisher": { "type": "string" },
+    "citationHtml": { "type": "string" },
+    "identifier_of_dataverse": { "type": "string" },
+    "name_of_dataverse": { "type": "string" },
+    "citation": { "type": "string" },
+    "storageIdentifier": { "type": "string" },
+    "subjects": { "type": "array", "items": { "type": "string" } },
+    "fileCount": { "type": "integer", "minimum": 0 },
+    "versionId": { "type": "integer" },
+    "versionState": { "type": "string", "examples": ["RELEASED"] },
+    "majorVersion": { "type": "integer" },
+    "minorVersion": { "type": "integer" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" },
+    "publicationStatuses": { "type": "array", "items": { "type": "string" } },
+    "contacts": { "type": "array", "items": { "type": "object" } },
+    "authors": { "type": "array", "items": { "type": "string" } },
+    "geographicCoverage": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": true
+}
