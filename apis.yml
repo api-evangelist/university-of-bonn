@@ -70,6 +70,10 @@ apis:
       - type: Website
         url: https://bonndata.uni-bonn.de/
 common:
+  - type: VulnerabilityDisclosure
+    url: security/university-of-bonn-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/university-of-bonn-domain-security.yml
   - type: Website
     url: https://www.uni-bonn.de/en
   - type: GitHub
@@ -84,6 +88,8 @@ common:
     url: finops/university-of-bonn-finops.yml
   - type: Review
     url: review.yml
+  - url: https://www.uni-bonn.de/news/rss.xml
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
