@@ -1,0 +1,63 @@
+openapi: 3.0.3
+info:
+  title: bonndata Dataverse Native REST API (Public Read Subset) Datasets Metrics API
+  description: Public, read-only subset of the Dataverse Native REST API as exposed by bonndata, the University of Bonn institutional research data repository (https://bonndata.uni-bonn.de). The paths, parameters, and operationIds in this document are taken faithfully from the live machine-readable OpenAPI document published by the server at https://bonndata.uni-bonn.de/openapi (Dataverse software version 6.7.1). This subset includes only the endpoints that are publicly accessible without an API token and were verified live on 2026-06-03 (search, dataset retrieval, dataset versions, metadata export, repository info, and dataset metrics). Response schemas were modeled from the actual JSON payloads returned by the live service. The full upstream Dataverse API (425 paths, many requiring authentication) is documented at the Native API guide referenced below.
+  version: 6.7.1
+  contact:
+    name: bonndata Research Data Repository, University of Bonn
+    email: bonndata@uni-bonn.de
+    url: https://bonndata.uni-bonn.de/
+  license:
+    name: Apache License 2.0
+    url: https://github.com/IQSS/dataverse/blob/develop/LICENSE.md
+servers:
+- url: https://bonndata.uni-bonn.de/api
+  description: bonndata Dataverse Native API base (verified live, 362 indexed datasets)
+tags:
+- name: Metrics
+  description: Aggregate repository metrics.
+paths:
+  /info/metrics/datasets:
+    get:
+      tags:
+      - Metrics
+      summary: Count of published datasets
+      operationId: Metrics_getDatasetsAllTime
+      parameters:
+      - name: dataLocation
+        in: query
+        schema:
+          type: string
+      - name: parentAlias
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: All-time count of published datasets.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountResponse'
+components:
+  schemas:
+    CountResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: OK
+        data:
+          type: object
+          properties:
+            count:
+              type: integer
+              example: 362
+          required:
+          - count
+      required:
+      - status
+      - data
+externalDocs:
+  description: Dataverse Native API guide
+  url: https://guides.dataverse.org/en/latest/api/native-api.html

@@ -1,0 +1,263 @@
+openapi: 3.0.3
+info:
+  title: bonndata Dataverse Native REST API (Public Read Subset) Datasets Search API
+  description: Public, read-only subset of the Dataverse Native REST API as exposed by bonndata, the University of Bonn institutional research data repository (https://bonndata.uni-bonn.de). The paths, parameters, and operationIds in this document are taken faithfully from the live machine-readable OpenAPI document published by the server at https://bonndata.uni-bonn.de/openapi (Dataverse software version 6.7.1). This subset includes only the endpoints that are publicly accessible without an API token and were verified live on 2026-06-03 (search, dataset retrieval, dataset versions, metadata export, repository info, and dataset metrics). Response schemas were modeled from the actual JSON payloads returned by the live service. The full upstream Dataverse API (425 paths, many requiring authentication) is documented at the Native API guide referenced below.
+  version: 6.7.1
+  contact:
+    name: bonndata Research Data Repository, University of Bonn
+    email: bonndata@uni-bonn.de
+    url: https://bonndata.uni-bonn.de/
+  license:
+    name: Apache License 2.0
+    url: https://github.com/IQSS/dataverse/blob/develop/LICENSE.md
+servers:
+- url: https://bonndata.uni-bonn.de/api
+  description: bonndata Dataverse Native API base (verified live, 362 indexed datasets)
+tags:
+- name: Search
+  description: Search the published catalog of datasets, dataverses, and files.
+paths:
+  /search:
+    get:
+      tags:
+      - Search
+      summary: Search published content
+      description: Search across published datasets, dataverses (collections), and files. Verified live returning 362 indexed datasets for q=*&type=dataset.
+      operationId: Search_search
+      parameters:
+      - name: q
+        in: query
+        description: Search query string (use * to match all).
+        schema:
+          type: string
+      - name: type
+        in: query
+        description: Restrict results to a content type.
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - dataset
+            - dataverse
+            - file
+      - name: subtree
+        in: query
+        description: Restrict the search to one or more dataverse aliases.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: sort
+        in: query
+        description: Field to sort on (e.g. name, date).
+        schema:
+          type: string
+      - name: order
+        in: query
+        description: Sort order.
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+      - name: per_page
+        in: query
+        description: Number of results per page (max 1000).
+        schema:
+          type: integer
+          default: 10
+      - name: start
+        in: query
+        description: Zero-based offset of the first result to return.
+        schema:
+          type: integer
+          default: 0
+      - name: fq
+        in: query
+        description: Filter query(ies) to narrow results.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: show_relevance
+        in: query
+        schema:
+          type: boolean
+      - name: show_facets
+        in: query
+        schema:
+          type: boolean
+      - name: show_entity_ids
+        in: query
+        schema:
+          type: boolean
+      - name: show_type_counts
+        in: query
+        schema:
+          type: boolean
+      - name: geo_point
+        in: query
+        description: Latitude,longitude point for geospatial search.
+        schema:
+          type: string
+      - name: geo_radius
+        in: query
+        description: Radius in kilometers for geospatial search.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Search results.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+  /search/services:
+    get:
+      tags:
+      - Search
+      summary: List available search engines
+      operationId: Search_getSearchEngines
+      responses:
+        '200':
+          description: Available search services.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+components:
+  schemas:
+    SearchData:
+      type: object
+      properties:
+        q:
+          type: string
+          example: '*'
+        total_count:
+          type: integer
+          example: 362
+        start:
+          type: integer
+          example: 0
+        spelling_alternatives:
+          type: object
+          additionalProperties: true
+        count_in_response:
+          type: integer
+          example: 2
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchItem'
+      required:
+      - total_count
+      - start
+      - items
+    SearchResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: OK
+        data:
+          $ref: '#/components/schemas/SearchData'
+      required:
+      - status
+      - data
+    ApiEnvelope:
+      type: object
+      description: Standard Dataverse API response envelope.
+      properties:
+        status:
+          type: string
+          enum:
+          - OK
+          - ERROR
+        data:
+          type: object
+          additionalProperties: true
+        message:
+          type: string
+      required:
+      - status
+    SearchItem:
+      type: object
+      description: A single search hit. Fields shown are those returned for datasets.
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - dataset
+          - dataverse
+          - file
+        url:
+          type: string
+          format: uri
+        global_id:
+          type: string
+          example: doi:10.60507/FK2/BBP6GG
+        description:
+          type: string
+        published_at:
+          type: string
+          format: date-time
+        publisher:
+          type: string
+        citationHtml:
+          type: string
+        identifier_of_dataverse:
+          type: string
+        name_of_dataverse:
+          type: string
+        citation:
+          type: string
+        storageIdentifier:
+          type: string
+        subjects:
+          type: array
+          items:
+            type: string
+        fileCount:
+          type: integer
+        versionId:
+          type: integer
+        versionState:
+          type: string
+          example: RELEASED
+        majorVersion:
+          type: integer
+        minorVersion:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        publicationStatuses:
+          type: array
+          items:
+            type: string
+        contacts:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        authors:
+          type: array
+          items:
+            type: string
+        geographicCoverage:
+          type: array
+          items:
+            type: string
+      required:
+      - name
+      - type
+      - url
+externalDocs:
+  description: Dataverse Native API guide
+  url: https://guides.dataverse.org/en/latest/api/native-api.html

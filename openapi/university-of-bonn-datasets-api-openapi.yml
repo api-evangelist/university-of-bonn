@@ -1,0 +1,139 @@
+openapi: 3.0.3
+info:
+  title: bonndata Dataverse Native REST API (Public Read Subset) Datasets API
+  description: Public, read-only subset of the Dataverse Native REST API as exposed by bonndata, the University of Bonn institutional research data repository (https://bonndata.uni-bonn.de). The paths, parameters, and operationIds in this document are taken faithfully from the live machine-readable OpenAPI document published by the server at https://bonndata.uni-bonn.de/openapi (Dataverse software version 6.7.1). This subset includes only the endpoints that are publicly accessible without an API token and were verified live on 2026-06-03 (search, dataset retrieval, dataset versions, metadata export, repository info, and dataset metrics). Response schemas were modeled from the actual JSON payloads returned by the live service. The full upstream Dataverse API (425 paths, many requiring authentication) is documented at the Native API guide referenced below.
+  version: 6.7.1
+  contact:
+    name: bonndata Research Data Repository, University of Bonn
+    email: bonndata@uni-bonn.de
+    url: https://bonndata.uni-bonn.de/
+  license:
+    name: Apache License 2.0
+    url: https://github.com/IQSS/dataverse/blob/develop/LICENSE.md
+servers:
+- url: https://bonndata.uni-bonn.de/api
+  description: bonndata Dataverse Native API base (verified live, 362 indexed datasets)
+tags:
+- name: Datasets
+  description: Retrieve published datasets, their versions, and export metadata.
+paths:
+  /datasets/{id}:
+    get:
+      tags:
+      - Datasets
+      summary: Get a dataset
+      description: Retrieve a published dataset by its numeric database id, or by persistent identifier using the literal path segment ":persistentId" together with the persistentId query parameter (e.g. /datasets/:persistentId/?persistentId=doi:10.60507/FK2/BBP6GG).
+      operationId: Datasets_getDataset
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Numeric dataset id, or the literal ":persistentId".
+        schema:
+          type: string
+      - name: persistentId
+        in: query
+        description: Persistent identifier (DOI/Handle) when id is ":persistentId".
+        schema:
+          type: string
+      - name: returnOwners
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: The dataset and its latest published version.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+  /datasets/{id}/versions:
+    get:
+      tags:
+      - Datasets
+      summary: List dataset versions
+      operationId: Datasets_listVersions
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: excludeFiles
+        in: query
+        schema:
+          type: boolean
+      - name: excludeMetadataBlocks
+        in: query
+        schema:
+          type: boolean
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      - name: offset
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: List of dataset versions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+  /datasets/export:
+    get:
+      tags:
+      - Datasets
+      summary: Export dataset metadata
+      description: Export the metadata of a published dataset in a chosen format (e.g. Datacite, dataverse_json, oai_dc, schema.org, ddi).
+      operationId: Datasets_exportDataset
+      parameters:
+      - name: persistentId
+        in: query
+        description: Persistent identifier (DOI/Handle) of the dataset.
+        schema:
+          type: string
+      - name: exporter
+        in: query
+        description: Export format name.
+        schema:
+          type: string
+          example: schema.org
+      - name: version
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Exported metadata in the requested format.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+            application/xml:
+              schema:
+                type: string
+components:
+  schemas:
+    ApiEnvelope:
+      type: object
+      description: Standard Dataverse API response envelope.
+      properties:
+        status:
+          type: string
+          enum:
+          - OK
+          - ERROR
+        data:
+          type: object
+          additionalProperties: true
+        message:
+          type: string
+      required:
+      - status
+externalDocs:
+  description: Dataverse Native API guide
+  url: https://guides.dataverse.org/en/latest/api/native-api.html
