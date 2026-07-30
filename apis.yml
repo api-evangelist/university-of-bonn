@@ -13,9 +13,21 @@ description: >-
   identity/SSO, student information systems) are operated through standard vendor
   platforms without separately published public developer portals.
 type: Index
+accessModel:
+  pricing: free
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Free
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/university-of-bonn.png
 url: https://raw.githubusercontent.com/api-evangelist/university-of-bonn/refs/heads/main/apis.yml
 tags:
   - Education
@@ -28,47 +40,112 @@ created: '2026-06-03'
 modified: '2026-06-03'
 specificationVersion: '0.19'
 apis:
-  - aid: university-of-bonn:bonndata-native-api
-    name: bonndata Dataverse Native REST API
-    description: >-
-      Public REST search and data-access API for bonndata, the University of
-      Bonn institutional research data repository running on Dataverse. The
-      search endpoint returns JSON listings of published datasets and files
-      (verified live, 362+ indexed records). Follows the standard Dataverse
-      Native API specification.
-    humanURL: https://guides.dataverse.org/en/latest/api/native-api.html
-    baseURL: https://bonndata.uni-bonn.de/api
-    tags: [ Research Data, Dataverse, REST, Open Data ]
-    properties:
-      - type: Documentation
-        url: https://guides.dataverse.org/en/latest/api/native-api.html
-      - type: Website
-        url: https://bonndata.uni-bonn.de/
-      - type: OpenAPI
-        url: openapi/university-of-bonn-bonndata-native-api.yaml
-      - type: JSONSchema
-        url: json-schema/university-of-bonn-search-response-schema.json
-      - type: x-vocabulary
-        url: vocabulary/university-of-bonn-vocabulary.yml
-      - type: x-rules
-        url: rules/university-of-bonn-rules.yml
-      - type: x-json-ld
-        url: json-ld/university-of-bonn-context.jsonld
-  - aid: university-of-bonn:bonndata-oai-pmh
-    name: bonndata OAI-PMH Metadata Endpoint
-    description: >-
-      OAI-PMH (Open Archives Initiative Protocol for Metadata Harvesting)
-      endpoint for the bonndata repository, supporting metadata harvesting of
-      published research datasets (verified live via verb=Identify). Supports
-      DataCite, Dublin Core, OAI-ORE and OpenAIRE metadata formats.
-    humanURL: https://guides.dataverse.org/en/latest/admin/harvestserver.html
-    baseURL: https://bonndata.uni-bonn.de/oai
-    tags: [ Research Data, OAI-PMH, Metadata Harvesting, Open Data ]
-    properties:
-      - type: Documentation
-        url: https://guides.dataverse.org/en/latest/admin/harvestserver.html
-      - type: Website
-        url: https://bonndata.uni-bonn.de/
+- aid: university-of-bonn:bonndata-oai-pmh
+  name: bonndata OAI-PMH Metadata Endpoint
+  description: >-
+    OAI-PMH (Open Archives Initiative Protocol for Metadata Harvesting) endpoint for the bonndata repository,
+    supporting metadata harvesting of published research datasets (verified live via verb=Identify). Supports
+    DataCite, Dublin Core, OAI-ORE and OpenAIRE metadata formats.
+  humanURL: https://guides.dataverse.org/en/latest/admin/harvestserver.html
+  baseURL: https://bonndata.uni-bonn.de/oai
+  tags:
+  - Research Data
+  - OAI-PMH
+  - Metadata Harvesting
+  - Open Data
+  properties:
+  - type: Documentation
+    url: https://guides.dataverse.org/en/latest/admin/harvestserver.html
+  - type: Website
+    url: https://bonndata.uni-bonn.de/
+- aid: university-of-bonn:university-of-bonn-datasets-api
+  name: University of Bonn Datasets API
+  description: Retrieve published datasets, their versions, and export metadata.
+  humanURL: https://guides.dataverse.org/en/latest/api/native-api.html
+  baseURL: https://bonndata.uni-bonn.de/api
+  tags:
+  - Datasets
+  properties:
+  - type: OpenAPI
+    url: openapi/university-of-bonn-datasets-api-openapi.yml
+  - type: Documentation
+    url: https://guides.dataverse.org/en/latest/api/native-api.html
+  - type: Website
+    url: https://bonndata.uni-bonn.de/
+  - type: JSONSchema
+    url: json-schema/university-of-bonn-search-response-schema.json
+  - type: x-vocabulary
+    url: vocabulary/university-of-bonn-vocabulary.yml
+  - type: x-rules
+    url: rules/university-of-bonn-rules.yml
+  - type: x-json-ld
+    url: json-ld/university-of-bonn-context.jsonld
+- aid: university-of-bonn:university-of-bonn-info-api
+  name: University of Bonn Info API
+  description: Repository version and software information.
+  humanURL: https://guides.dataverse.org/en/latest/api/native-api.html
+  baseURL: https://bonndata.uni-bonn.de/api
+  tags:
+  - Info
+  properties:
+  - type: OpenAPI
+    url: openapi/university-of-bonn-info-api-openapi.yml
+  - type: Documentation
+    url: https://guides.dataverse.org/en/latest/api/native-api.html
+  - type: Website
+    url: https://bonndata.uni-bonn.de/
+  - type: JSONSchema
+    url: json-schema/university-of-bonn-search-response-schema.json
+  - type: x-vocabulary
+    url: vocabulary/university-of-bonn-vocabulary.yml
+  - type: x-rules
+    url: rules/university-of-bonn-rules.yml
+  - type: x-json-ld
+    url: json-ld/university-of-bonn-context.jsonld
+- aid: university-of-bonn:university-of-bonn-metrics-api
+  name: University of Bonn Metrics API
+  description: Aggregate repository metrics.
+  humanURL: https://guides.dataverse.org/en/latest/api/native-api.html
+  baseURL: https://bonndata.uni-bonn.de/api
+  tags:
+  - Metrics
+  properties:
+  - type: OpenAPI
+    url: openapi/university-of-bonn-metrics-api-openapi.yml
+  - type: Documentation
+    url: https://guides.dataverse.org/en/latest/api/native-api.html
+  - type: Website
+    url: https://bonndata.uni-bonn.de/
+  - type: JSONSchema
+    url: json-schema/university-of-bonn-search-response-schema.json
+  - type: x-vocabulary
+    url: vocabulary/university-of-bonn-vocabulary.yml
+  - type: x-rules
+    url: rules/university-of-bonn-rules.yml
+  - type: x-json-ld
+    url: json-ld/university-of-bonn-context.jsonld
+- aid: university-of-bonn:university-of-bonn-search-api
+  name: University of Bonn Search API
+  description: Search the published catalog of datasets, dataverses, and files.
+  humanURL: https://guides.dataverse.org/en/latest/api/native-api.html
+  baseURL: https://bonndata.uni-bonn.de/api
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/university-of-bonn-search-api-openapi.yml
+  - type: Documentation
+    url: https://guides.dataverse.org/en/latest/api/native-api.html
+  - type: Website
+    url: https://bonndata.uni-bonn.de/
+  - type: JSONSchema
+    url: json-schema/university-of-bonn-search-response-schema.json
+  - type: x-vocabulary
+    url: vocabulary/university-of-bonn-vocabulary.yml
+  - type: x-rules
+    url: rules/university-of-bonn-rules.yml
+  - type: x-json-ld
+    url: json-ld/university-of-bonn-context.jsonld
 common:
   - type: AgenticAccess
     url: agentic-access/university-of-bonn-agentic-access.yml
