@@ -1,0 +1,20 @@
+{
+  "provider": "university-of-bonn",
+  "sources": [
+    "university-of-bonn-datasets-api-openapi.yml",
+    "university-of-bonn-info-api-openapi.yml",
+    "university-of-bonn-metrics-api-openapi.yml",
+    "university-of-bonn-search-api-openapi.yml"
+  ],
+  "outputs": [
+    "university-of-bonn-datasets-api-openapi.yml",
+    "university-of-bonn-info-api-openapi.yml",
+    "university-of-bonn-metrics-api-openapi.yml",
+    "university-of-bonn-search-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
