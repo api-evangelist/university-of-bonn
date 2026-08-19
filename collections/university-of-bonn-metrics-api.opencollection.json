@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "bonndata Dataverse Native REST API (Public Read Subset) Datasets Metrics API",
+    "version": "6.7.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metrics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Count of published datasets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://bonndata.uni-bonn.de/api/info/metrics/datasets",
+            "params": [
+              {
+                "name": "dataLocation",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "parentAlias",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Count of published datasets"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

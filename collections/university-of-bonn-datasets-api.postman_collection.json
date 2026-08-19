@@ -1,0 +1,369 @@
+{
+  "item": [
+    {
+      "id": "948d85bf-df28-4e55-bc29-21fca61084bc",
+      "name": "Datasets",
+      "description": {
+        "content": "Retrieve published datasets, their versions, and export metadata.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b1478d94-3d3a-42c3-b8ac-ae3e2702ba2a",
+          "name": "Get a dataset",
+          "request": {
+            "name": "Get a dataset",
+            "description": {
+              "content": "Retrieve a published dataset by its numeric database id, or by persistent identifier using the literal path segment \":persistentId\" together with the persistentId query parameter (e.g. /datasets/:persistentId/?persistentId=doi:10.60507/FK2/BBP6GG).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "datasets",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "persistentId",
+                  "value": "<string>",
+                  "description": "Persistent identifier (DOI/Handle) when id is \":persistentId\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "returnOwners",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Numeric dataset id, or the literal \":persistentId\"."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dc6d8dd7-344e-4518-bf8c-afe033d8d9c9",
+              "name": "The dataset and its latest published version.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "persistentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "returnOwners",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Numeric dataset id, or the literal \":persistentId\"."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"OK\",\n  \"data\": {\n    \"key_0\": false\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e730f9f1-8133-4bc0-bb46-9f8ac4f5888c",
+          "name": "List dataset versions",
+          "request": {
+            "name": "List dataset versions",
+            "description": {},
+            "url": {
+              "path": [
+                "datasets",
+                ":id",
+                "versions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "excludeFiles",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "excludeMetadataBlocks",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "48100613-6a7a-417f-ae25-c9886a2e3863",
+              "name": "List of dataset versions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets",
+                    ":id",
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "excludeFiles",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "excludeMetadataBlocks",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"OK\",\n  \"data\": {\n    \"key_0\": false\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "014f77de-88e8-4668-a835-8b44c74dc4f8",
+          "name": "Export dataset metadata",
+          "request": {
+            "name": "Export dataset metadata",
+            "description": {
+              "content": "Export the metadata of a published dataset in a chosen format (e.g. Datacite, dataverse_json, oai_dc, schema.org, ddi).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "datasets",
+                "export"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "persistentId",
+                  "value": "<string>",
+                  "description": "Persistent identifier (DOI/Handle) of the dataset."
+                },
+                {
+                  "disabled": false,
+                  "key": "exporter",
+                  "value": "<string>",
+                  "description": "Export format name."
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dc71e853-3af2-4668-af47-b79363d8d08c",
+              "name": "Exported metadata in the requested format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "persistentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exporter",
+                      "value": "schema.org"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 5973,\n  \"key_1\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://bonndata.uni-bonn.de/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "adbfdc45-c699-4af4-99ee-e10a233349ea",
+    "name": "bonndata Dataverse Native REST API (Public Read Subset) Datasets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public, read-only subset of the Dataverse Native REST API as exposed by bonndata, the University of Bonn institutional research data repository (https://bonndata.uni-bonn.de). The paths, parameters, and operationIds in this document are taken faithfully from the live machine-readable OpenAPI document published by the server at https://bonndata.uni-bonn.de/openapi (Dataverse software version 6.7.1). This subset includes only the endpoints that are publicly accessible without an API token and were verified live on 2026-06-03 (search, dataset retrieval, dataset versions, metadata export, repository info, and dataset metrics). Response schemas were modeled from the actual JSON payloads returned by the live service. The full upstream Dataverse API (425 paths, many requiring authentication) is documented at the Native API guide referenced below.\n\nContact Support:\n Name: bonndata Research Data Repository, University of Bonn\n Email: bonndata@uni-bonn.de",
+      "type": "text/plain"
+    }
+  }
+}

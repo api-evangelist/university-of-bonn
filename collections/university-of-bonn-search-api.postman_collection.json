@@ -1,0 +1,339 @@
+{
+  "item": [
+    {
+      "id": "026afa89-2b2d-4108-ac6e-1f39b6f0848a",
+      "name": "Search",
+      "description": {
+        "content": "Search the published catalog of datasets, dataverses, and files.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a13d3fe4-95b8-4971-a514-11f2fae84008",
+          "name": "Search published content",
+          "request": {
+            "name": "Search published content",
+            "description": {
+              "content": "Search across published datasets, dataverses (collections), and files. Verified live returning 362 indexed datasets for q=*&type=dataset.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Search query string (use * to match all)."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Restrict results to a content type."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Restrict results to a content type."
+                },
+                {
+                  "disabled": false,
+                  "key": "subtree",
+                  "value": "<string>",
+                  "description": "Restrict the search to one or more dataverse aliases."
+                },
+                {
+                  "disabled": false,
+                  "key": "subtree",
+                  "value": "<string>",
+                  "description": "Restrict the search to one or more dataverse aliases."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Field to sort on (e.g. name, date)."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Sort order."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "10",
+                  "description": "Number of results per page (max 1000)."
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "0",
+                  "description": "Zero-based offset of the first result to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "fq",
+                  "value": "<string>",
+                  "description": "Filter query(ies) to narrow results."
+                },
+                {
+                  "disabled": false,
+                  "key": "fq",
+                  "value": "<string>",
+                  "description": "Filter query(ies) to narrow results."
+                },
+                {
+                  "disabled": false,
+                  "key": "show_relevance",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "show_facets",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "show_entity_ids",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "show_type_counts",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "geo_point",
+                  "value": "<string>",
+                  "description": "Latitude,longitude point for geospatial search."
+                },
+                {
+                  "disabled": false,
+                  "key": "geo_radius",
+                  "value": "<string>",
+                  "description": "Radius in kilometers for geospatial search."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c4abf20c-c2f5-4529-ba7f-06b9e8d6515f",
+              "name": "Search results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subtree",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subtree",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "key": "fq",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fq",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "show_relevance",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "show_facets",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "show_entity_ids",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "show_type_counts",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "geo_point",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "geo_radius",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"OK\",\n  \"data\": {\n    \"total_count\": 362,\n    \"start\": 0,\n    \"items\": [\n      {\n        \"name\": \"string\",\n        \"type\": \"dataverse\",\n        \"url\": \"https://XiEHSydqsKrgYFFkshtd.yjgM0P762uUSUpj4eyfqDzlNoKhx2R6YLZgvhUXT5svD2nl7nTNx.0AY7\",\n        \"global_id\": \"doi:10.60507/FK2/BBP6GG\",\n        \"description\": \"string\",\n        \"published_at\": \"2017-08-20T16:20:03.101Z\",\n        \"publisher\": \"string\",\n        \"citationHtml\": \"string\",\n        \"identifier_of_dataverse\": \"string\",\n        \"name_of_dataverse\": \"string\",\n        \"citation\": \"string\",\n        \"storageIdentifier\": \"string\",\n        \"subjects\": [\n          \"string\",\n          \"string\"\n        ],\n        \"fileCount\": 4490,\n        \"versionId\": 8088,\n        \"versionState\": \"RELEASED\",\n        \"majorVersion\": 482,\n        \"minorVersion\": 9287,\n        \"createdAt\": \"1994-01-19T00:27:24.153Z\",\n        \"updatedAt\": \"1983-01-27T01:21:44.665Z\",\n        \"publicationStatuses\": [\n          \"string\",\n          \"string\"\n        ],\n        \"contacts\": [\n          {\n            \"key_0\": 4477,\n            \"key_1\": 5517,\n            \"key_2\": \"string\"\n          },\n          {\n            \"key_0\": true,\n            \"key_1\": 4941.162311527285,\n            \"key_2\": true\n          }\n        ],\n        \"authors\": [\n          \"string\",\n          \"string\"\n        ],\n        \"geographicCoverage\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"name\": \"string\",\n        \"type\": \"file\",\n        \"url\": \"https://xTQTRHOXpWXSjOlhQy.vjzqEXLG5r\",\n        \"global_id\": \"doi:10.60507/FK2/BBP6GG\",\n        \"description\": \"string\",\n        \"published_at\": \"1960-07-18T07:09:06.504Z\",\n        \"publisher\": \"string\",\n        \"citationHtml\": \"string\",\n        \"identifier_of_dataverse\": \"string\",\n        \"name_of_dataverse\": \"string\",\n        \"citation\": \"string\",\n        \"storageIdentifier\": \"string\",\n        \"subjects\": [\n          \"string\",\n          \"string\"\n        ],\n        \"fileCount\": 1764,\n        \"versionId\": 3792,\n        \"versionState\": \"RELEASED\",\n        \"majorVersion\": 3833,\n        \"minorVersion\": 4733,\n        \"createdAt\": \"2003-02-09T00:07:09.629Z\",\n        \"updatedAt\": \"1986-05-27T16:14:38.756Z\",\n        \"publicationStatuses\": [\n          \"string\",\n          \"string\"\n        ],\n        \"contacts\": [\n          {\n            \"key_0\": 4841.350771663489,\n            \"key_1\": 3456,\n            \"key_2\": 1824\n          },\n          {\n            \"key_0\": 2733.9512726971516,\n            \"key_1\": 1975.2879118555265\n          }\n        ],\n        \"authors\": [\n          \"string\",\n          \"string\"\n        ],\n        \"geographicCoverage\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ],\n    \"q\": \"*\",\n    \"spelling_alternatives\": {\n      \"key_0\": 7941,\n      \"key_1\": true,\n      \"key_2\": false,\n      \"key_3\": \"string\"\n    },\n    \"count_in_response\": 2\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef678c59-9843-4030-9e85-1cd0307db484",
+          "name": "List available search engines",
+          "request": {
+            "name": "List available search engines",
+            "description": {},
+            "url": {
+              "path": [
+                "search",
+                "services"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3f2b5c2d-03db-4d08-930a-76f689f2b8ea",
+              "name": "Available search services.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"OK\",\n  \"data\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://bonndata.uni-bonn.de/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4c5a0ed5-042b-4004-9785-1ba67eb8f7df",
+    "name": "bonndata Dataverse Native REST API (Public Read Subset) Datasets Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public, read-only subset of the Dataverse Native REST API as exposed by bonndata, the University of Bonn institutional research data repository (https://bonndata.uni-bonn.de). The paths, parameters, and operationIds in this document are taken faithfully from the live machine-readable OpenAPI document published by the server at https://bonndata.uni-bonn.de/openapi (Dataverse software version 6.7.1). This subset includes only the endpoints that are publicly accessible without an API token and were verified live on 2026-06-03 (search, dataset retrieval, dataset versions, metadata export, repository info, and dataset metrics). Response schemas were modeled from the actual JSON payloads returned by the live service. The full upstream Dataverse API (425 paths, many requiring authentication) is documented at the Native API guide referenced below.\n\nContact Support:\n Name: bonndata Research Data Repository, University of Bonn\n Email: bonndata@uni-bonn.de",
+      "type": "text/plain"
+    }
+  }
+}

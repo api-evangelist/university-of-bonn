@@ -1,0 +1,122 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "bonndata Dataverse Native REST API (Public Read Subset) Datasets Search API",
+    "version": "6.7.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search published content",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://bonndata.uni-bonn.de/api/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search query string (use * to match all)."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to a content type."
+              },
+              {
+                "name": "subtree",
+                "value": "",
+                "type": "query",
+                "description": "Restrict the search to one or more dataverse aliases."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort on (e.g. name, date)."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page (max 1000)."
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Zero-based offset of the first result to return."
+              },
+              {
+                "name": "fq",
+                "value": "",
+                "type": "query",
+                "description": "Filter query(ies) to narrow results."
+              },
+              {
+                "name": "show_relevance",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "show_facets",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "show_entity_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "show_type_counts",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "geo_point",
+                "value": "",
+                "type": "query",
+                "description": "Latitude,longitude point for geospatial search."
+              },
+              {
+                "name": "geo_radius",
+                "value": "",
+                "type": "query",
+                "description": "Radius in kilometers for geospatial search."
+              }
+            ]
+          },
+          "docs": "Search across published datasets, dataverses (collections), and files. Verified live returning 362 indexed datasets for q=*&type=dataset."
+        },
+        {
+          "info": {
+            "name": "List available search engines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://bonndata.uni-bonn.de/api/search/services"
+          },
+          "docs": "List available search engines"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

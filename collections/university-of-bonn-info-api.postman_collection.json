@@ -1,0 +1,101 @@
+{
+  "item": [
+    {
+      "id": "3fa1b6a7-664e-4397-b8d8-c87419c71551",
+      "name": "Info",
+      "description": {
+        "content": "Repository version and software information.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "143a31ee-e346-461a-813c-0cca0328770a",
+          "name": "Get version and build information",
+          "request": {
+            "name": "Get version and build information",
+            "description": {},
+            "url": {
+              "path": [
+                "info",
+                "version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4eef80b3-b9dd-4beb-adb2-658ab8b4ad94",
+              "name": "Dataverse software version and build.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "info",
+                    "version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"OK\",\n  \"data\": {\n    \"version\": \"6.7.1\",\n    \"build\": \"1955-8e18f64\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://bonndata.uni-bonn.de/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "199bd25b-0106-400c-9198-ccf3e82806ce",
+    "name": "bonndata Dataverse Native REST API (Public Read Subset) Datasets Info API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public, read-only subset of the Dataverse Native REST API as exposed by bonndata, the University of Bonn institutional research data repository (https://bonndata.uni-bonn.de). The paths, parameters, and operationIds in this document are taken faithfully from the live machine-readable OpenAPI document published by the server at https://bonndata.uni-bonn.de/openapi (Dataverse software version 6.7.1). This subset includes only the endpoints that are publicly accessible without an API token and were verified live on 2026-06-03 (search, dataset retrieval, dataset versions, metadata export, repository info, and dataset metrics). Response schemas were modeled from the actual JSON payloads returned by the live service. The full upstream Dataverse API (425 paths, many requiring authentication) is documented at the Native API guide referenced below.\n\nContact Support:\n Name: bonndata Research Data Repository, University of Bonn\n Email: bonndata@uni-bonn.de",
+      "type": "text/plain"
+    }
+  }
+}

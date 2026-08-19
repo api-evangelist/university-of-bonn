@@ -1,0 +1,123 @@
+{
+  "item": [
+    {
+      "id": "f807d4e0-719c-40aa-b2f4-6521df3dc06b",
+      "name": "Metrics",
+      "description": {
+        "content": "Aggregate repository metrics.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "57ca48e5-6cff-44b7-a6e9-7cca9345c7b2",
+          "name": "Count of published datasets",
+          "request": {
+            "name": "Count of published datasets",
+            "description": {},
+            "url": {
+              "path": [
+                "info",
+                "metrics",
+                "datasets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "dataLocation",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "parentAlias",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a593d6be-0362-409f-a693-3888e503f145",
+              "name": "All-time count of published datasets.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "info",
+                    "metrics",
+                    "datasets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dataLocation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parentAlias",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"OK\",\n  \"data\": {\n    \"count\": 362\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://bonndata.uni-bonn.de/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e6922b1e-659f-425c-8f18-474d6eb2bdde",
+    "name": "bonndata Dataverse Native REST API (Public Read Subset) Datasets Metrics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public, read-only subset of the Dataverse Native REST API as exposed by bonndata, the University of Bonn institutional research data repository (https://bonndata.uni-bonn.de). The paths, parameters, and operationIds in this document are taken faithfully from the live machine-readable OpenAPI document published by the server at https://bonndata.uni-bonn.de/openapi (Dataverse software version 6.7.1). This subset includes only the endpoints that are publicly accessible without an API token and were verified live on 2026-06-03 (search, dataset retrieval, dataset versions, metadata export, repository info, and dataset metrics). Response schemas were modeled from the actual JSON payloads returned by the live service. The full upstream Dataverse API (425 paths, many requiring authentication) is documented at the Native API guide referenced below.\n\nContact Support:\n Name: bonndata Research Data Repository, University of Bonn\n Email: bonndata@uni-bonn.de",
+      "type": "text/plain"
+    }
+  }
+}
