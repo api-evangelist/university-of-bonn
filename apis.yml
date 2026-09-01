@@ -1,64 +1,161 @@
 ---
 aid: university-of-bonn
 name: University of Bonn
+x-type: university
+x-category: Public Research University
 description: >-
-  The University of Bonn (Rheinische Friedrich-Wilhelms-Universität Bonn) is a
-  public research university in Bonn, Germany, ranked #227 in the QS World
-  University Rankings 2025. Its primary public, machine-readable developer
-  footprint is bonndata, the institutional cross-disciplinary research data
-  repository built on the open-source Dataverse platform, which exposes a public
-  Dataverse Native REST API and an OAI-PMH metadata harvesting endpoint. The
-  university also maintains an official GitHub organization (unibonn) with code
-  from across the institution. Most other systems (library Alma/Primo discovery,
-  identity/SSO, student information systems) are operated through standard vendor
-  platforms without separately published public developer portals.
+  The University of Bonn (Rheinische Friedrich-Wilhelms-Universitaet Bonn), founded in
+  1818, is a public research university in North Rhine-Westphalia, Germany, and a member
+  of the German Universities Excellence Initiative. Like every institution it is a
+  federation of buyers rather than an API producer, but it is an unusually self-hosted
+  one: the surfaces in this profile run on the university's own hosts, inside its own
+  computing centre, rather than on a vendor's multi-tenant platform. bonndata, the
+  institutional cross-disciplinary research data repository, runs Dataverse 6.7.1 at
+  bonndata.uni-bonn.de (CNAME bonndata-produktiv.rhrz.uni-bonn.de, 131.220.213.19) and
+  exposes a genuinely public, anonymous, read-only REST API — /search, /datasets,
+  /datasets/export, /info/version, /info/metrics — plus a full OAI-PMH 2.0 endpoint;
+  every documented path was re-verified live on 2026-09-01 and /search returned 376
+  indexed datasets. bonndoc, the university publication server at bonndoc.ulb.uni-bonn.de,
+  answers OAI-PMH in ten metadata formats. The university runs its own Shibboleth Identity
+  Provider at shibboleth.uni-bonn.de and is the only uni-bonn.de entity in the 11,457-entity
+  DFN-AAI federation aggregate. It self-hosts GitLab at gitlab.uni-bonn.de, whose REST API
+  v4 answers anonymously across 195 public projects, and keeps a GitHub organization at
+  github.com/unibonn. It is a DataCite member (BXBQ) minting DOIs under prefix 10.60507
+  through the bonndata repository client, is registered in ROR as 041nas322 and in re3data
+  as r3d100014222. What it does NOT have is equally clear and is stated here rather than
+  padded: no central developer portal, no institution-authored OpenAPI or AsyncAPI, no
+  llms.txt, sitemap.xml, apis.json or agent card on any host it controls, no public course,
+  timetable or student-information API (BASIS runs HISinOne behind sign-in, eCampus runs
+  ILIAS), and no institutional open-data portal — opendata.bonn.de belongs to the City of
+  Bonn, not the university. Library discovery (bonnus) is Ex Libris Primo, self-hosted on a
+  university IP, with no public API. The four OpenAPI documents in this repo are
+  API-Evangelist-authored descriptions of the public read subset of the Dataverse Native API
+  as deployed by Bonn; the Dataverse contract itself belongs to the Dataverse project, and
+  no vendor specification is saved under this institution.
 type: Index
 deliveryModel:
   model: saas
-  open_source: false
-  commercial: true
+  open_source: true
+  commercial: false
   callable_host: true
-  label: Hosted service · you call their endpoint
+  label: Institution-hosted open-source platforms · anonymous read APIs
   confidence: high
   source:
+  - probed
   - openapi
-  - pricing
-  generated: '2026-08-28'
-  method: derived
+  generated: '2026-09-01'
+  method: probed
 accessModel:
   pricing: free
-  onboarding: unknown
+  onboarding: none
   trial: false
   try_now: false
-  public: false
-  label: Free
-  confidence: medium
+  public: true
+  label: Free · no key, no onboarding · public read endpoints
+  confidence: high
   source:
-  - plans
-  generated: '2026-07-22'
-  method: derived
+  - probed
+  generated: '2026-09-01'
+  method: probed
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/university-of-bonn.png
 url: https://raw.githubusercontent.com/api-evangelist/university-of-bonn/refs/heads/main/apis.yml
 tags:
-  - Education
-  - Higher Education
   - University
+  - Higher Education
+  - Education
+  - Germany
+  - Public Research University
   - Research Data
   - Open Data
-  - Germany
+  - Open Science
+  - Institutional Repository
+  - Dataverse
+  - OAI-PMH
+  - Identity Federation
+  - Shibboleth
+  - DFN-AAI
+  - Research Computing
+  - Scholarly Publishing
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-09-01'
 specificationVersion: '0.23'
+x-coverage:
+  state: covered
+  reason: covered
+  detail: >-
+    Bonn is one of the thin-cohort exceptions: it operates a real, anonymous, public read
+    API on its own host and it was fully reachable. Every path in the four OpenAPI
+    documents was re-probed on 2026-09-01 and returned 200 with the expected payload
+    (/search 376 datasets, /search/services, /info/version 6.7.1 build 1955-8e18f64,
+    /info/metrics/datasets 376, /datasets/:persistentId, /datasets/export?exporter=oai_dc),
+    and both institution OAI-PMH endpoints answered verb=Identify. Two honest limits are
+    recorded rather than smoothed over. First, the HTML side of bonndata and bonndoc sits
+    behind an Anubis bot challenge that answers HTTP 200 with a 7,540-byte "Making sure
+    you're not a bot!" page — so /openapi, /llms.txt and /.well-known/agent.json all
+    return 200 while carrying nothing, and none of them is credited here; the /api and
+    /oai paths are unaffected. Second, the ULB digital collections host
+    (digitale-sammlungen.ulb.uni-bonn.de) returns a hard 403 to every request including
+    its OAI path, so whatever IIIF or harvesting surface it runs could not be read. What
+    is absent is absent, not unreachable: no llms.txt, sitemap.xml, apis.json or agent
+    card exists on www.uni-bonn.de (all 404), and there is no developer portal to gate.
+  evidence:
+  - url: https://bonndata.uni-bonn.de/api/search?q=*&type=dataset
+    status: 200
+  - url: https://bonndata.uni-bonn.de/api/info/version
+    status: 200
+  - url: https://bonndata.uni-bonn.de/api/info/metrics/datasets
+    status: 200
+  - url: https://bonndata.uni-bonn.de/oai?verb=Identify
+    status: 200
+  - url: https://bonndoc.ulb.uni-bonn.de/oai/request?verb=Identify
+    status: 200
+  - url: https://shibboleth.uni-bonn.de/idp/shibboleth
+    status: 200
+  - url: https://mdq.aai.dfn.de/entities/https%3A%2F%2Fshibboleth.uni-bonn.de%2Fidp%2Fshibboleth
+    status: 200
+  - url: https://gitlab.uni-bonn.de/api/v4/projects?per_page=1&simple=true
+    status: 200
+  - url: https://api.datacite.org/providers/bxbq
+    status: 200
+  - url: https://bonndata.uni-bonn.de/openapi
+    status: 200
+  - url: https://bonndata.uni-bonn.de/llms.txt
+    status: 200
+  - url: https://www.uni-bonn.de/llms.txt
+    status: 404
+  - url: https://www.uni-bonn.de/sitemap.xml
+    status: 404
+  - url: https://www.uni-bonn.de/apis.json
+    status: 404
+  - url: https://digitale-sammlungen.ulb.uni-bonn.de/oai?verb=Identify
+    status: 403
+  - url: https://api.crossref.org/members?query=bonn
+    status: 200
+  checked: '2026-09-01'
 apis:
 - aid: university-of-bonn:bonndata-oai-pmh
   name: bonndata OAI-PMH Metadata Endpoint
+  x-operator: institution
+  x-operator-basis: >-
+    Host bonndata.uni-bonn.de is under the university's own registrable domain and CNAMEs
+    to bonndata-produktiv.rhrz.uni-bonn.de (131.220.213.19), the university computing
+    centre — self-hosted, not a vendor tenancy.
   description: >-
-    OAI-PMH (Open Archives Initiative Protocol for Metadata Harvesting) endpoint for the bonndata repository,
-    supporting metadata harvesting of published research datasets (verified live via verb=Identify). Supports
-    DataCite, Dublin Core, OAI-ORE and OpenAIRE metadata formats.
-  humanURL: https://guides.dataverse.org/en/latest/admin/harvestserver.html
+    OAI-PMH 2.0 metadata-harvesting endpoint for bonndata, the University of Bonn
+    institutional research data repository. Re-verified live 2026-09-01: verb=Identify
+    returns repositoryName "bonndata Dataverse OAI Archive", baseURL
+    https://bonndata.uni-bonn.de/oai, protocolVersion 2.0, adminEmail bonndata@uni-bonn.de,
+    earliestDatestamp 2025-07-24T00:00:08Z, granularity YYYY-MM-DDThh:mm:ssZ,
+    deletedRecord transient, gzip and deflate compression. verb=ListMetadataFormats
+    returns five prefixes — Datacite, oai_dc, oai_datacite, oai_ddi and dataverse_json
+    (the previous profile claimed OAI-ORE and OpenAIRE here; that was wrong and is
+    corrected). verb=ListSets returns institutional sets including
+    Bonn_Center_Digital_Humanities, Bonn_Mathematics, Medical_Faculty and ZEF. The OAI-PMH
+    protocol is OAI's and the software is the Dataverse project's; the deployment, the
+    host and the metadata are Bonn's.
+  humanURL: https://www.hrz.uni-bonn.de/en/all-services/data-storage-fileservices/bonndata
   baseURL: https://bonndata.uni-bonn.de/oai
   tags:
   - Research Data
@@ -68,13 +165,23 @@ apis:
   properties:
   - type: Documentation
     url: https://guides.dataverse.org/en/latest/admin/harvestserver.html
-  - type: Website
-    url: https://bonndata.uni-bonn.de/
+  - type: BaseURL
+    url: https://bonndata.uni-bonn.de/oai
 - aid: university-of-bonn:university-of-bonn-datasets-api
   name: University of Bonn Datasets API
-  description: Retrieve published datasets, their versions, and export metadata.
+  x-operator: institution
+  x-operator-basis: >-
+    Institution-hosted Dataverse deployment on bonndata.uni-bonn.de; contract described
+    from live responses by API Evangelist, not published by a vendor under Bonn's name.
+  description: >-
+    Retrieve published datasets, their versions, and export metadata from bonndata.
+    Re-verified live 2026-09-01: /datasets/:persistentId?persistentId=doi:10.60507/FK2/BBP6GG
+    returned 200 with 12,647 bytes of citation metadata, and
+    /datasets/export?exporter=oai_dc returned 200 application/xml Dublin Core. No API token
+    is required for published content.
+    The OpenAPI server base is https://bonndata.uni-bonn.de/api; the baseURL above names a verified endpoint instead, because /api itself has no index and returns 404.
   humanURL: https://guides.dataverse.org/en/latest/api/native-api.html
-  baseURL: https://bonndata.uni-bonn.de/api
+  baseURL: https://bonndata.uni-bonn.de/api/datasets/:persistentId/?persistentId=doi:10.60507/FK2/BBP6GG
   tags:
   - Datasets
   properties:
@@ -83,7 +190,7 @@ apis:
   - type: Documentation
     url: https://guides.dataverse.org/en/latest/api/native-api.html
   - type: Website
-    url: https://bonndata.uni-bonn.de/
+    url: https://www.hrz.uni-bonn.de/en/all-services/data-storage-fileservices/bonndata
   - type: JSONSchema
     url: json-schema/university-of-bonn-search-response-schema.json
   - type: x-vocabulary
@@ -94,9 +201,15 @@ apis:
     url: json-ld/university-of-bonn-context.jsonld
 - aid: university-of-bonn:university-of-bonn-info-api
   name: University of Bonn Info API
-  description: Repository version and software information.
+  x-operator: institution
+  x-operator-basis: >-
+    Institution-hosted Dataverse deployment on bonndata.uni-bonn.de.
+  description: >-
+    Repository version and software information for bonndata. Re-verified live 2026-09-01:
+    GET /info/version returned {"status":"OK","data":{"version":"6.7.1","build":"1955-8e18f64"}}.
+    The OpenAPI server base is https://bonndata.uni-bonn.de/api; the baseURL above names a verified endpoint instead, because /api itself has no index and returns 404.
   humanURL: https://guides.dataverse.org/en/latest/api/native-api.html
-  baseURL: https://bonndata.uni-bonn.de/api
+  baseURL: https://bonndata.uni-bonn.de/api/info/version
   tags:
   - Info
   properties:
@@ -105,7 +218,7 @@ apis:
   - type: Documentation
     url: https://guides.dataverse.org/en/latest/api/native-api.html
   - type: Website
-    url: https://bonndata.uni-bonn.de/
+    url: https://www.hrz.uni-bonn.de/en/all-services/data-storage-fileservices/bonndata
   - type: JSONSchema
     url: json-schema/university-of-bonn-search-response-schema.json
   - type: x-vocabulary
@@ -116,9 +229,16 @@ apis:
     url: json-ld/university-of-bonn-context.jsonld
 - aid: university-of-bonn:university-of-bonn-metrics-api
   name: University of Bonn Metrics API
-  description: Aggregate repository metrics.
+  x-operator: institution
+  x-operator-basis: >-
+    Institution-hosted Dataverse deployment on bonndata.uni-bonn.de.
+  description: >-
+    Aggregate repository metrics for bonndata. Re-verified live 2026-09-01: GET
+    /info/metrics/datasets returned {"status":"OK","data":{"count":376}}. Note the path is
+    /info/metrics/datasets — a bare /metrics/datasets returns 404.
+    The OpenAPI server base is https://bonndata.uni-bonn.de/api; the baseURL above names a verified endpoint instead, because /api itself has no index and returns 404.
   humanURL: https://guides.dataverse.org/en/latest/api/native-api.html
-  baseURL: https://bonndata.uni-bonn.de/api
+  baseURL: https://bonndata.uni-bonn.de/api/info/metrics/datasets
   tags:
   - Metrics
   properties:
@@ -127,7 +247,7 @@ apis:
   - type: Documentation
     url: https://guides.dataverse.org/en/latest/api/native-api.html
   - type: Website
-    url: https://bonndata.uni-bonn.de/
+    url: https://www.hrz.uni-bonn.de/en/all-services/data-storage-fileservices/bonndata
   - type: JSONSchema
     url: json-schema/university-of-bonn-search-response-schema.json
   - type: x-vocabulary
@@ -138,9 +258,17 @@ apis:
     url: json-ld/university-of-bonn-context.jsonld
 - aid: university-of-bonn:university-of-bonn-search-api
   name: University of Bonn Search API
-  description: Search the published catalog of datasets, dataverses, and files.
+  x-operator: institution
+  x-operator-basis: >-
+    Institution-hosted Dataverse deployment on bonndata.uni-bonn.de.
+  description: >-
+    Search the published catalog of datasets, dataverses and files in bonndata.
+    Re-verified live 2026-09-01: /search?q=*&type=dataset returned total_count 376 (362 at
+    first profiling on 2026-06-03), and /search/services returned the single Solr-backed
+    "Dataverse Standard Search" service. Anonymous, no key.
+    The OpenAPI server base is https://bonndata.uni-bonn.de/api; the baseURL above names a verified endpoint instead, because /api itself has no index and returns 404.
   humanURL: https://guides.dataverse.org/en/latest/api/native-api.html
-  baseURL: https://bonndata.uni-bonn.de/api
+  baseURL: https://bonndata.uni-bonn.de/api/search?q=*&type=dataset
   tags:
   - Search
   properties:
@@ -149,7 +277,7 @@ apis:
   - type: Documentation
     url: https://guides.dataverse.org/en/latest/api/native-api.html
   - type: Website
-    url: https://bonndata.uni-bonn.de/
+    url: https://www.hrz.uni-bonn.de/en/all-services/data-storage-fileservices/bonndata
   - type: JSONSchema
     url: json-schema/university-of-bonn-search-response-schema.json
   - type: x-vocabulary
@@ -158,19 +286,244 @@ apis:
     url: rules/university-of-bonn-rules.yml
   - type: x-json-ld
     url: json-ld/university-of-bonn-context.jsonld
+- aid: university-of-bonn:bonndoc-oai-pmh
+  name: bonndoc Publication Server OAI-PMH Endpoint
+  x-operator: institution
+  x-operator-basis: >-
+    Host bonndoc.ulb.uni-bonn.de is the University and State Library's own host under the
+    institution's registrable domain; DSpace is the software, the deployment is Bonn's.
+  description: >-
+    OAI-PMH 2.0 endpoint for bonndoc, "Der Publikationsserver der Universitaet Bonn" — the
+    university's DSpace-based publication and dissertation server, operated by the ULB.
+    Verified live 2026-09-01: verb=Identify returns protocolVersion 2.0, adminEmail
+    bonndoc@ulb.uni-bonn.de, earliestDatestamp 2016-09-29T14:25:33Z, repositoryIdentifier
+    bonndoc.ulb.uni-bonn.de, sampleIdentifier oai:bonndoc.ulb.uni-bonn.de:20.500.11811/1234
+    (Handle prefix 20.500.11811). verb=ListMetadataFormats returns ten prefixes: oai_dc,
+    mods, mets, didl, ore, xMetaDissPlus, xoai, dim, uketd_dc and qdc — xMetaDissPlus being
+    the German national dissertation-delivery format for the DNB. This surface was missing
+    from the June 2026 profile entirely.
+  humanURL: https://bonndoc.ulb.uni-bonn.de/
+  baseURL: https://bonndoc.ulb.uni-bonn.de/oai/request
+  tags:
+  - OAI-PMH
+  - Institutional Repository
+  - DSpace
+  - Open Access
+  - Dissertations
+  - Metadata Harvesting
+  properties:
+  - type: BaseURL
+    url: https://bonndoc.ulb.uni-bonn.de/oai/request
+  - type: Documentation
+    url: https://www.ulb.uni-bonn.de/en
+- aid: university-of-bonn:bonndoc-dspace-rest
+  name: bonndoc DSpace REST API (bot-challenged)
+  x-operator: institution
+  x-operator-basis: >-
+    Institution-hosted DSpace on a ULB host; the REST contract is the DSpace project's and
+    is not saved here.
+  description: >-
+    bonndoc runs DSpace 7-class software, which exposes a HAL/JSON REST API at /server/api.
+    It is recorded with an honest limit rather than as a working surface: on 2026-09-01
+    https://bonndoc.ulb.uni-bonn.de/server/api returned HTTP 200 carrying a 4,475-byte
+    Anubis proof-of-work interstitial titled "Making sure you're not a bot!", not JSON.
+    The same challenge is served for /xmlui/OAI/request and for the site root. This is a
+    soft-200 and is NOT credited as a live REST surface; the /oai/request path is the
+    exception and answers real OAI-PMH XML. No DSpace specification is saved under this
+    institution.
+  humanURL: https://bonndoc.ulb.uni-bonn.de/
+  baseURL: https://bonndoc.ulb.uni-bonn.de/server/api
+  tags:
+  - DSpace
+  - REST
+  - Institutional Repository
+  - Bot Challenge
+  properties:
+  - type: BaseURL
+    url: https://bonndoc.ulb.uni-bonn.de/server/api
+- aid: university-of-bonn:gitlab-api
+  name: University of Bonn GitLab REST API v4
+  x-operator: institution
+  x-operator-basis: >-
+    gitlab.uni-bonn.de resolves to 131.220.213.20, the university's own address space,
+    adjacent to the bonndata host — a self-hosted GitLab, not gitlab.com.
+  description: >-
+    The University of Bonn self-hosts GitLab at gitlab.uni-bonn.de and its REST API v4
+    answers anonymous callers over the public project set. Verified live 2026-09-01:
+    GET /api/v4/projects?per_page=1&simple=true returned 200 application/json with
+    x-total 195 across 195 pages and ratelimit-limit 60; a 100-item page returned 97,168
+    bytes of project metadata. Privileged endpoints are properly closed —
+    /api/v4/metadata and /api/v4/version both return 401 Unauthorized without a token.
+    The GitLab API contract belongs to GitLab; the instance, the projects and the data are
+    Bonn's, so the relationship is recorded and no GitLab specification is saved here.
+  humanURL: https://gitlab.uni-bonn.de/
+  baseURL: https://gitlab.uni-bonn.de/api/v4/projects
+  tags:
+  - GitLab
+  - Source Code
+  - REST
+  - Research Software
+  - Self-Hosted
+  properties:
+  - type: BaseURL
+    url: https://gitlab.uni-bonn.de/api/v4/projects
+  - type: Website
+    url: https://gitlab.uni-bonn.de/
+  - type: Documentation
+    url: https://gitlab.uni-bonn.de/help
+- aid: university-of-bonn:dfn-aai-idp
+  name: DFN-AAI Identity Federation — University of Bonn Shibboleth IdP
+  x-operator: federation
+  x-operator-basis: >-
+    A federation is shared by definition; the IdP entity, its scope and its keys are the
+    institution's. DFN-AAI's own metadata service is not saved as Bonn's contract.
+  description: >-
+    The University of Bonn operates its own SAML 2.0 / Shibboleth Identity Provider and
+    publishes signed metadata from its own host — https://shibboleth.uni-bonn.de/idp/shibboleth
+    returned 200 application/xml, 12,145 bytes, on 2026-09-01, entityID
+    https://shibboleth.uni-bonn.de/idp/shibboleth, OrganizationName "Rheinische
+    Friedrich-Wilhelms-Universitaet Bonn". The same entity is registered in DFN-AAI, the
+    German national research-and-education identity federation: the 112,936,662-byte
+    aggregate at https://mdq.aai.dfn.de/entities/ carries 11,457 EntityDescriptors and
+    exactly ONE uni-bonn.de entity — this IdP — with registrationAuthority
+    https://www.aai.dfn.de, mdui:DisplayName "Universitaet Bonn", shibmd:Scope uni-bonn.de,
+    entity attributes DFN-AAI-IdP and http://aai.dfn.de/category/idm.nrw-member, and a
+    valid XML signature. Per-entity MDQ lookup answers 200 application/samlmetadata+xml.
+    SSO is bound over HTTP-POST, HTTP-POST-SimpleSign and HTTP-Redirect; SLO adds SOAP;
+    an ArtifactResolutionService runs on port 8443. This is the strongest
+    institution-operated machine-readable surface Bonn has and it was absent from the
+    June 2026 profile.
+  humanURL: https://www.aai.dfn.de/
+  baseURL: https://shibboleth.uni-bonn.de/idp/shibboleth
+  tags:
+  - Identity Federation
+  - Shibboleth
+  - SAML
+  - DFN-AAI
+  - Single Sign-On
+  - Metadata
+  properties:
+  - type: BaseURL
+    url: https://shibboleth.uni-bonn.de/idp/shibboleth
+  - type: Documentation
+    url: https://doku.tid.dfn.de/de:aai:start
+  - type: Metadata
+    url: https://mdq.aai.dfn.de/entities/https%3A%2F%2Fshibboleth.uni-bonn.de%2Fidp%2Fshibboleth
+- aid: university-of-bonn:datacite-member
+  name: DataCite Membership — University of Bonn (BXBQ)
+  x-operator: registry
+  x-operator-basis: >-
+    An identifier registry the institution is REGISTERED IN. The membership is a fact
+    about Bonn; DataCite's contract is DataCite's and is not saved here.
+  description: >-
+    The University of Bonn is a DataCite member organization and mints DOIs for its
+    research data. Verified 2026-09-01 at https://api.datacite.org/providers/bxbq (200):
+    symbol BXBQ, name "University of Bonn", memberType consortium_organization, rorId
+    https://ror.org/041nas322. The repository client is bonndata — symbol BXBQ.UDHDYC,
+    clientType repository, url https://bonndata.uni-bonn.de/, joined 2023 — and DOI prefix
+    10.60507 resolves to it (https://api.datacite.org/prefixes/10.60507, 200, created
+    2023-03-01). Confirmed in the data: a live bonndata search result carries global_id
+    doi:10.60507/FK2/BBP6GG.
+  humanURL: https://www.hrz.uni-bonn.de/en/all-services/data-storage-fileservices/bonndata
+  baseURL: https://api.datacite.org/providers/bxbq
+  tags:
+  - DataCite
+  - DOI
+  - Persistent Identifiers
+  - Registry
+  - Research Data
+  properties:
+  - type: BaseURL
+    url: https://api.datacite.org/providers/bxbq
+  - type: Registration
+    url: https://api.datacite.org/clients/bxbq.udhdyc
+- aid: university-of-bonn:ror-record
+  name: ROR Registry Record — University of Bonn
+  x-operator: registry
+  x-operator-basis: >-
+    A registry record the institution is registered in, not a contract it operates.
+  description: >-
+    The University of Bonn's Research Organization Registry identifier,
+    https://ror.org/041nas322, verified live 2026-09-01. Domain uni-bonn.de, established
+    1818, located in Bonn, North Rhine-Westphalia, Germany; cross-referenced to GRID
+    grid.10388.32, ISNI 0000 0001 2240 3300, Wikidata Q152171 and Crossref Funder IDs
+    501100008131 and 501100016374. This identifier is what binds Bonn's DataCite
+    membership, its repository records and its re3data registration together.
+  humanURL: https://ror.org/041nas322
+  baseURL: https://api.ror.org/organizations/041nas322
+  tags:
+  - ROR
+  - Persistent Identifiers
+  - Registry
+  - Research Organization
+  properties:
+  - type: BaseURL
+    url: https://api.ror.org/organizations/041nas322
+- aid: university-of-bonn:re3data-record
+  name: re3data Registry Record — bonndata
+  x-operator: registry
+  x-operator-basis: >-
+    A research-data-repository registry the institution's repository is listed in.
+  description: >-
+    bonndata is registered in re3data, the Registry of Research Data Repositories, as
+    r3d100014222 with its own DOI https://doi.org/10.17616/R31NJNGU. Verified 2026-09-01
+    via https://www.re3data.org/api/beta/repositories?query=bonndata (200, XML). The
+    registry record is re3data's; the repository it describes is Bonn's.
+  humanURL: https://www.re3data.org/repository/r3d100014222
+  baseURL: https://www.re3data.org/api/beta/repository/r3d100014222
+  tags:
+  - re3data
+  - Registry
+  - Research Data
+  - Repository
+  properties:
+  - type: BaseURL
+    url: https://www.re3data.org/api/beta/repository/r3d100014222
 common:
+  - type: Website
+    url: https://www.uni-bonn.de/en
+  - type: Documentation
+    url: https://guides.dataverse.org/en/latest/api/native-api.html
+  - type: ResearchRepository
+    url: https://www.hrz.uni-bonn.de/en/all-services/data-storage-fileservices/bonndata
+  - type: LibraryCatalog
+    url: https://bonnus.ulb.uni-bonn.de/
+  - type: CourseCatalog
+    url: https://basis.uni-bonn.de/
+  - type: IdentityFederation
+    url: https://shibboleth.uni-bonn.de/idp/shibboleth
+  - type: ResearchComputing
+    url: https://www.hpc.uni-bonn.de/en
+  - type: AIPolicy
+    url: https://www.ktf.uni-bonn.de/faecher/fundamentaltheologie/medien-1/ki-richtlinien-uni-bonn.pdf
+  - type: SourceCode
+    url: https://gitlab.uni-bonn.de/
+  - type: GitHubOrganization
+    url: https://github.com/unibonn
+  - type: Support
+    url: https://www.hrz.uni-bonn.de/en
+  - type: TermsOfService
+    url: https://www.uni-bonn.de/en/imprint
+  - type: PrivacyPolicy
+    url: https://www.uni-bonn.de/en/data-protection
+  - type: SecurityTxt
+    url: https://www.uni-bonn.de/.well-known/security.txt
+  - type: LinkedIn
+    url: https://www.linkedin.com/school/university-of-bonn/
+  - type: Blog
+    url: https://www.uni-bonn.de/news/rss.xml
+  - type: Conformance
+    url: conformance/university-of-bonn-conformance.yml
+  - type: Authentication
+    url: authentication/university-of-bonn-authentication.yml
+  - type: x-errors
+    url: errors/university-of-bonn-errors.yml
   - type: AgenticAccess
     url: agentic-access/university-of-bonn-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/university-of-bonn-vulnerability-disclosure.yml
   - type: DomainSecurity
     url: security/university-of-bonn-domain-security.yml
-  - type: Website
-    url: https://www.uni-bonn.de/en
-  - type: GitHub
-    url: https://github.com/unibonn
-  - type: LinkedIn
-    url: https://www.linkedin.com/school/university-of-bonn/
   - type: Plans
     url: plans/university-of-bonn-plans-pricing.yml
   - type: RateLimits
@@ -179,8 +532,6 @@ common:
     url: finops/university-of-bonn-finops.yml
   - type: Review
     url: review.yml
-  - url: https://www.uni-bonn.de/news/rss.xml
-    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
