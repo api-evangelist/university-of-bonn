@@ -400,6 +400,13 @@ apis:
   - Shibboleth
   - SAML
   - DFN-AAI
+  - SSO
+  - Metadata
+  tags_raw:
+  - Identity Federation
+  - Shibboleth
+  - SAML
+  - DFN-AAI
   - Single Sign-On
   - Metadata
   properties:
