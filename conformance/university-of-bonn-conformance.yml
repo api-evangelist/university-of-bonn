@@ -1,0 +1,159 @@
+generated: '2026-09-01'
+method: probed
+source: >-
+  Live probes of University-of-Bonn-operated hosts on 2026-09-01 (bonndata.uni-bonn.de,
+  bonndoc.ulb.uni-bonn.de, shibboleth.uni-bonn.de, gitlab.uni-bonn.de), plus the DFN-AAI
+  federation metadata aggregate (mdq.aai.dfn.de) and the DataCite, ROR and re3data
+  registry records. Every claim below is evidenced by a fetched response, never by a
+  prose claim on a web page.
+docs: https://www.hrz.uni-bonn.de/en/all-services/data-storage-fileservices/bonndata
+note: >-
+  Scored against the Kin Score `education` regime standards[]: scim, lti, oneroster,
+  ed-fi, caliper, qti, oai-pmh, shibboleth, saml, orcid, datacite, crossref. Only
+  standards with a fetched, quotable response are marked conforms: true. REWARD-ONLY —
+  an absent standard is recorded as false with the probe that failed, never invented.
+  The University of Bonn publishes no institution-authored OpenAPI; the four OpenAPI
+  documents in this repo are API-Evangelist-authored descriptions of the public read
+  subset of the Dataverse Native API as deployed on the university's own host, and are
+  marked as such in openapi/_original/.
+standards:
+- id: oai-pmh
+  conforms: true
+  evidence: >-
+    Two institution-operated OAI-PMH 2.0 endpoints answered verb=Identify with valid
+    OAI-PMH XML on 2026-09-01. bonndata: https://bonndata.uni-bonn.de/oai?verb=Identify
+    -> 200 text/xml, repositoryName "bonndata Dataverse OAI Archive", protocolVersion
+    2.0, adminEmail bonndata@uni-bonn.de, earliestDatestamp 2025-07-24T00:00:08Z,
+    granularity YYYY-MM-DDThh:mm:ssZ, deletedRecord transient, gzip/deflate compression.
+    verb=ListMetadataFormats returns Datacite, oai_dc, oai_datacite, oai_ddi and
+    dataverse_json; verb=ListSets returns institution sets including
+    Bonn_Center_Digital_Humanities, Bonn_Mathematics, Medical_Faculty and ZEF. bonndoc:
+    https://bonndoc.ulb.uni-bonn.de/oai/request?verb=Identify -> 200 text/xml,
+    repositoryName "bonndoc - Der Publikationsserver der Universitaet Bonn",
+    protocolVersion 2.0, adminEmail bonndoc@ulb.uni-bonn.de, earliestDatestamp
+    2016-09-29T14:25:33Z, repositoryIdentifier bonndoc.ulb.uni-bonn.de, sampleIdentifier
+    oai:bonndoc.ulb.uni-bonn.de:20.500.11811/1234. Its ListMetadataFormats returns
+    oai_dc, mods, mets, didl, ore, xMetaDissPlus, xoai, dim, uketd_dc and qdc. The
+    OAI-PMH protocol is OAI's; the deployments, the hosts and the metadata are Bonn's.
+  evidence_urls:
+  - https://bonndata.uni-bonn.de/oai?verb=Identify
+  - https://bonndata.uni-bonn.de/oai?verb=ListMetadataFormats
+  - https://bonndoc.ulb.uni-bonn.de/oai/request?verb=Identify
+- id: shibboleth
+  conforms: true
+  evidence: >-
+    The University of Bonn operates its own Shibboleth Identity Provider and publishes
+    signed SAML metadata from its own host: https://shibboleth.uni-bonn.de/idp/shibboleth
+    -> 200 application/xml, 12,145 bytes, entityID
+    https://shibboleth.uni-bonn.de/idp/shibboleth, OrganizationName "Rheinische
+    Friedrich-Wilhelms-Universitaet Bonn". The same entity is registered in DFN-AAI, the
+    German national research-and-education identity federation: the aggregate at
+    https://mdq.aai.dfn.de/entities/ (200, 112,936,662 bytes, 11,457 EntityDescriptors)
+    carries exactly one uni-bonn.de entity — the Bonn IdP — with registrationAuthority
+    https://www.aai.dfn.de, mdui:DisplayName "Universitaet Bonn", shibmd:Scope
+    uni-bonn.de, entity attributes DFN-AAI-IdP and
+    http://aai.dfn.de/category/idm.nrw-member, and a valid XML signature. Per-entity MDQ
+    lookup also answers: https://mdq.aai.dfn.de/entities/https%3A%2F%2Fshibboleth.uni-bonn.de%2Fidp%2Fshibboleth
+    -> 200 application/samlmetadata+xml, 22,552 bytes.
+  evidence_urls:
+  - https://shibboleth.uni-bonn.de/idp/shibboleth
+  - https://mdq.aai.dfn.de/entities/https%3A%2F%2Fshibboleth.uni-bonn.de%2Fidp%2Fshibboleth
+- id: saml
+  conforms: true
+  evidence: >-
+    SAML 2.0 declared and bound on Bonn's own IdP entity
+    (protocolSupportEnumeration urn:oasis:names:tc:SAML:2.0:protocol). Endpoints read
+    from the metadata on 2026-09-01: SingleSignOnService over HTTP-POST
+    (https://shibboleth.uni-bonn.de/idp/profile/SAML2/POST/SSO), HTTP-POST-SimpleSign and
+    HTTP-Redirect (.../SAML2/Redirect/SSO); SingleLogoutService over Redirect, POST,
+    POST-SimpleSign and SOAP; ArtifactResolutionService at
+    https://shibboleth.uni-bonn.de:8443/idp/profile/SAML2/SOAP/ArtifactResolution; an
+    AttributeAuthorityDescriptor is present alongside the IDPSSODescriptor.
+  evidence_urls:
+  - https://shibboleth.uni-bonn.de/idp/shibboleth
+- id: datacite
+  conforms: true
+  evidence: >-
+    The University of Bonn is a DataCite member organization and mints DOIs for its
+    research data. https://api.datacite.org/providers/bxbq -> 200: symbol BXBQ, name
+    "University of Bonn", memberType consortium_organization, rorId
+    https://ror.org/041nas322. The repository client is bonndata, symbol BXBQ.UDHDYC,
+    clientType repository, url https://bonndata.uni-bonn.de/, joined 2023; DOI prefix
+    10.60507 resolves to that client
+    (https://api.datacite.org/prefixes/10.60507 -> 200). Confirmed in the data itself: a
+    live bonndata search result carries global_id doi:10.60507/FK2/BBP6GG, and the OAI-PMH
+    endpoint serves the Datacite and oai_datacite metadata prefixes. This is a registry
+    MEMBERSHIP — a fact about Bonn — not a Bonn-operated contract.
+  evidence_urls:
+  - https://api.datacite.org/providers/bxbq
+  - https://api.datacite.org/prefixes/10.60507
+  - https://api.datacite.org/clients/bxbq.udhdyc
+- id: orcid
+  conforms: false
+  evidence: >-
+    No ORCID conformance could be evidenced on 2026-09-01. The bonndata citation metadata
+    read live from https://bonndata.uni-bonn.de/api/datasets/:persistentId/ uses
+    otherIdAgency/otherIdValue for external identifiers rather than an
+    authorIdentifierScheme of ORCID, and no institution-operated ORCID integration,
+    member record or claiming service was found on a uni-bonn.de host. Recorded as
+    absent, not as a gap in the probe: the metadata was fetched and read.
+- id: crossref
+  conforms: false
+  evidence: >-
+    https://api.crossref.org/members?query=bonn -> 200 with total-results 0. No Crossref
+    member record for the University of Bonn or the ULB was found. Bonn's persistent
+    identifiers run through DataCite (prefix 10.60507) and, for bonndoc, through Handle
+    (20.500.11811).
+- id: lti
+  conforms: false
+  evidence: >-
+    eCampus (https://ecampus.uni-bonn.de/, 302 -> ilias.php?baseClass=ilrepositorygui) is
+    an institution-hosted ILIAS learning-management system, and ILIAS supports LTI as a
+    product feature, but no LTI platform registration, tool-configuration document or
+    .well-known/lti-configuration was reachable without authentication, so no conformance
+    is asserted.
+- id: scim
+  conforms: false
+  evidence: >-
+    No SCIM 2.0 endpoint or ServiceProviderConfig was found on any uni-bonn.de host.
+    Identity is federated over SAML/Shibboleth, not provisioned over a public SCIM API.
+- id: oneroster
+  conforms: false
+  evidence: No OneRoster surface found; the standard is K-12-oriented and not expected here.
+- id: ed-fi
+  conforms: false
+  evidence: No Ed-Fi surface found; the standard is US K-12-oriented and not expected here.
+- id: caliper
+  conforms: false
+  evidence: No Caliper Analytics endpoint or event store was found on an institution host.
+- id: qti
+  conforms: false
+  evidence: >-
+    No QTI package endpoint was reachable. ILIAS (eCampus) supports QTI import/export
+    behind authentication; nothing is publicly callable.
+other_standards:
+- id: dublin-core
+  conforms: true
+  evidence: >-
+    oai_dc served by both institution OAI-PMH endpoints; bonndata /api/datasets/export
+    ?exporter=oai_dc returns 200 application/xml Dublin Core for a live DOI.
+- id: handle
+  conforms: true
+  evidence: >-
+    bonndoc issues Handle identifiers under prefix 20.500.11811 (sampleIdentifier
+    oai:bonndoc.ulb.uni-bonn.de:20.500.11811/1234 in its OAI-PMH Identify response).
+- id: security-txt
+  conforms: true
+  evidence: >-
+    https://www.uni-bonn.de/.well-known/security.txt -> 200 text/plain, 264 bytes:
+    Contact https://www.hrz.uni-bonn.de/cert and mailto:sicherheitsteam@uni-bonn.de,
+    Preferred-Languages en, de, Canonical
+    https://www.hrz.uni-bonn.de/.well-known/security.txt, Expires 2027-08-22T10:03:40z.
+- id: openapi
+  conforms: false
+  evidence: >-
+    The university publishes no OpenAPI of its own. Dataverse 6.7.1 ships a machine-readable
+    document at /openapi, but on bonndata that path is behind an Anubis bot challenge
+    (200 text/html, 7,540 bytes, "Making sure you're not a bot!") for every Accept header
+    tried, so it could not be retrieved on 2026-09-01. The OpenAPI documents in this repo
+    are API-Evangelist-authored from live responses.

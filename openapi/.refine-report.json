@@ -1,10 +1,7 @@
 {
   "provider": "university-of-bonn",
   "sources": [
-    "university-of-bonn-datasets-api-openapi.yml",
-    "university-of-bonn-info-api-openapi.yml",
-    "university-of-bonn-metrics-api-openapi.yml",
-    "university-of-bonn-search-api-openapi.yml"
+    "_original/university-of-bonn-bonndata-native-api.yaml"
   ],
   "outputs": [
     "university-of-bonn-datasets-api-openapi.yml",
@@ -15,6 +12,15 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "university-of-bonn-bonndata-native-api.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "university-of-bonn-datasets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "university-of-bonn-info-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "university-of-bonn-metrics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "university-of-bonn-search-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

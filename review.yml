@@ -3,7 +3,7 @@ name: University of Bonn
 description: University of Bonn public developer/API footprint review for APIs.json cataloging.
 url: https://raw.githubusercontent.com/api-evangelist/university-of-bonn/refs/heads/main/review.yml
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-09-01'
 reviews:
   - date: '2026-06-03'
     rating: 3
@@ -40,3 +40,76 @@ reviews:
       - url: https://opendata.bonn.de/
         status: 200
         note: City of Bonn open data portal (municipal, not the university itself).
+  - date: '2026-09-01'
+    rating: 4
+    summary: >-
+      University pipeline re-profile with operator attribution. Confirmed bonndata is
+      institution-operated infrastructure, not a vendor tenancy: bonndata.uni-bonn.de
+      CNAMEs to bonndata-produktiv.rhrz.uni-bonn.de (131.220.213.19), the university
+      computing centre. Re-probed every path in the four saved OpenAPI documents — all
+      200, /search now total_count 376 (362 in June), Dataverse 6.7.1 build 1955-8e18f64.
+      Three institution-operated surfaces the June profile missed were found and added:
+      the bonndoc DSpace publication server's OAI-PMH endpoint (ten metadata formats,
+      Handle prefix 20.500.11811), a self-hosted GitLab whose REST API v4 answers
+      anonymously over 195 public projects, and the university's own Shibboleth IdP,
+      which is the ONLY uni-bonn.de entity among 11,457 EntityDescriptors in the DFN-AAI
+      federation aggregate. Registry memberships recorded: DataCite BXBQ / client
+      bonndata BXBQ.UDHDYC / prefix 10.60507, ROR 041nas322, re3data r3d100014222.
+      Two corrections to the June profile: the OAI-PMH endpoint serves Datacite, oai_dc,
+      oai_datacite, oai_ddi and dataverse_json — NOT OAI-ORE and OpenAIRE as previously
+      claimed; and the welded OpenAPI titles ("... Datasets Info API", "... Datasets
+      Metrics API", "... Datasets Search API") were our own refine artifact and are
+      repaired. Soft-200 trap recorded, not credited: the HTML side of bonndata and
+      bonndoc sits behind an Anubis bot challenge, so /openapi, /llms.txt and
+      /.well-known/agent.json all return HTTP 200 carrying a 7,540-byte "Making sure
+      you're not a bot!" page. No vendor contract is attributed to the institution and
+      no endpoint was fabricated.
+    endpoints:
+      - url: https://bonndata.uni-bonn.de/api/search?q=*&type=dataset
+        status: 200
+        note: total_count 376; anonymous, no key.
+      - url: https://bonndata.uni-bonn.de/api/info/version
+        status: 200
+        note: Dataverse 6.7.1, build 1955-8e18f64.
+      - url: https://bonndata.uni-bonn.de/api/info/metrics/datasets
+        status: 200
+        note: count 376. A bare /api/metrics/datasets returns 404.
+      - url: https://bonndata.uni-bonn.de/api/datasets/export?exporter=oai_dc&persistentId=doi:10.60507/FK2/BBP6GG
+        status: 200
+        note: Dublin Core XML export for a live DOI under Bonn's DataCite prefix.
+      - url: https://bonndata.uni-bonn.de/oai?verb=ListMetadataFormats
+        status: 200
+        note: Datacite, oai_dc, oai_datacite, oai_ddi, dataverse_json.
+      - url: https://bonndoc.ulb.uni-bonn.de/oai/request?verb=Identify
+        status: 200
+        note: bonndoc publication server; DSpace; Handle prefix 20.500.11811.
+      - url: https://bonndoc.ulb.uni-bonn.de/server/api
+        status: 200
+        note: SOFT 200 - Anubis bot challenge HTML, not the DSpace REST API. Not credited.
+      - url: https://shibboleth.uni-bonn.de/idp/shibboleth
+        status: 200
+        note: Institution-published SAML metadata, 12,145 bytes, entityID under uni-bonn.de.
+      - url: https://mdq.aai.dfn.de/entities/https%3A%2F%2Fshibboleth.uni-bonn.de%2Fidp%2Fshibboleth
+        status: 200
+        note: DFN-AAI per-entity MDQ; registrationAuthority https://www.aai.dfn.de, scope uni-bonn.de.
+      - url: https://gitlab.uni-bonn.de/api/v4/projects?per_page=1&simple=true
+        status: 200
+        note: x-total 195 public projects; /api/v4/metadata and /api/v4/version are 401.
+      - url: https://api.datacite.org/providers/bxbq
+        status: 200
+        note: DataCite member BXBQ "University of Bonn", rorId 041nas322.
+      - url: https://api.ror.org/organizations/041nas322
+        status: 200
+        note: ROR record; domain uni-bonn.de, established 1818.
+      - url: https://api.crossref.org/members?query=bonn
+        status: 200
+        note: total-results 0 - no Crossref membership found.
+      - url: https://digitale-sammlungen.ulb.uni-bonn.de/oai?verb=Identify
+        status: 403
+        note: ULB digital collections hard-403 to every request; surface unreadable.
+      - url: https://www.uni-bonn.de/llms.txt
+        status: 404
+        note: No llms.txt; sitemap.xml and apis.json also 404.
+      - url: https://www.uni-bonn.de/.well-known/security.txt
+        status: 200
+        note: Contact hrz.uni-bonn.de/cert, expires 2027-08-22.

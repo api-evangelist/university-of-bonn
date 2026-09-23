@@ -1,0 +1,53 @@
+generated: '2026-09-01'
+method: probed
+source: >-
+  Error responses captured live from https://bonndata.uni-bonn.de/api and
+  https://gitlab.uni-bonn.de/api/v4 on 2026-09-01. Every example below is a verbatim
+  response body, not a modelled shape.
+description: >-
+  The bonndata Dataverse API returns a consistent JSON envelope for both success and
+  failure — {"status":"OK","data":{...}} or {"status":"ERROR","message":"..."} — with the
+  HTTP status carrying the real signal. It does not implement RFC 9457 problem+json, and
+  neither does the self-hosted GitLab. One deployment-level behaviour is worth recording
+  separately: the HTML side of bonndata and bonndoc sits behind an Anubis proof-of-work
+  interstitial that answers HTTP 200 with a challenge page, so a 200 from those hosts is
+  not by itself evidence that a resource exists.
+format: json-envelope
+problem_json: false
+envelope:
+  success: '{"status":"OK","data":{...}}'
+  failure: '{"status":"ERROR","message":"..."}'
+examples:
+- request: GET https://bonndata.uni-bonn.de/api/info/settings
+  status: 404
+  body: >-
+    {"status":"ERROR","code":404,"message":"API endpoint does not exist on this server.
+    Please check your code for typos, or consult our API guide at
+    http://guides.dataverse.org."}
+  note: Unknown endpoint. Carries a `code` alongside the envelope and points at the API guide.
+- request: GET https://bonndata.uni-bonn.de/api/dataverses/root
+  status: 404
+  body: '{"status":"ERROR","message":"Can''t find dataverse with identifier=''root''"}'
+  note: Missing resource. No `code` field on this path — the envelope is not uniform.
+- request: GET https://bonndata.uni-bonn.de/api/users/:me
+  status: 400
+  body: '{"status":"ERROR","message":"User with token null not found."}'
+  note: >-
+    Missing credentials are reported as 400, not 401, and no WWW-Authenticate header is
+    returned — a client cannot discover the auth scheme from the response.
+- request: GET https://bonndata.uni-bonn.de/api/metrics/datasets
+  status: 404
+  body: '{"status":"ERROR", ...}'
+  note: >-
+    Path trap worth documenting: the metrics resource lives at /api/info/metrics/datasets.
+    The shorter path 404s.
+- request: GET https://gitlab.uni-bonn.de/api/v4/version
+  status: 401
+  body: '{"message":"401 Unauthorized"}'
+  note: GitLab's own error shape; correct 401 for a credentialed endpoint.
+- request: GET https://bonndoc.ulb.uni-bonn.de/server/api
+  status: 200
+  body: 'HTML: "Making sure you''re not a bot!" (Anubis interstitial, 4,475 bytes)'
+  note: >-
+    SOFT 200. A 200 from the HTML side of bonndoc or bonndata may be a bot challenge rather
+    than the resource. /oai/request and /api paths are not affected.

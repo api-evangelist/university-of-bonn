@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: bonndata Dataverse Native REST API (Public Read Subset) Datasets Search API
-  description: Public, read-only subset of the Dataverse Native REST API as exposed by bonndata, the University of Bonn institutional research data repository (https://bonndata.uni-bonn.de). The paths, parameters, and operationIds in this document are taken faithfully from the live machine-readable OpenAPI document published by the server at https://bonndata.uni-bonn.de/openapi (Dataverse software version 6.7.1). This subset includes only the endpoints that are publicly accessible without an API token and were verified live on 2026-06-03 (search, dataset retrieval, dataset versions, metadata export, repository info, and dataset metrics). Response schemas were modeled from the actual JSON payloads returned by the live service. The full upstream Dataverse API (425 paths, many requiring authentication) is documented at the Native API guide referenced below.
+  title: bonndata Dataverse Native REST API (Public Read Subset)…
+  description: Public, read-only subset of the Dataverse Native REST API as exposed by bonndata, the University of Bonn institutional research data repository (https://bonndata.uni-bonn.de).
   version: 6.7.1
   contact:
     name: bonndata Research Data Repository, University of Bonn
@@ -128,59 +128,6 @@ paths:
                 $ref: '#/components/schemas/ApiEnvelope'
 components:
   schemas:
-    SearchData:
-      type: object
-      properties:
-        q:
-          type: string
-          example: '*'
-        total_count:
-          type: integer
-          example: 362
-        start:
-          type: integer
-          example: 0
-        spelling_alternatives:
-          type: object
-          additionalProperties: true
-        count_in_response:
-          type: integer
-          example: 2
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/SearchItem'
-      required:
-      - total_count
-      - start
-      - items
-    SearchResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          example: OK
-        data:
-          $ref: '#/components/schemas/SearchData'
-      required:
-      - status
-      - data
-    ApiEnvelope:
-      type: object
-      description: Standard Dataverse API response envelope.
-      properties:
-        status:
-          type: string
-          enum:
-          - OK
-          - ERROR
-        data:
-          type: object
-          additionalProperties: true
-        message:
-          type: string
-      required:
-      - status
     SearchItem:
       type: object
       description: A single search hit. Fields shown are those returned for datasets.
@@ -258,6 +205,59 @@ components:
       - name
       - type
       - url
+    SearchData:
+      type: object
+      properties:
+        q:
+          type: string
+          example: '*'
+        total_count:
+          type: integer
+          example: 362
+        start:
+          type: integer
+          example: 0
+        spelling_alternatives:
+          type: object
+          additionalProperties: true
+        count_in_response:
+          type: integer
+          example: 2
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchItem'
+      required:
+      - total_count
+      - start
+      - items
+    ApiEnvelope:
+      type: object
+      description: Standard Dataverse API response envelope.
+      properties:
+        status:
+          type: string
+          enum:
+          - OK
+          - ERROR
+        data:
+          type: object
+          additionalProperties: true
+        message:
+          type: string
+      required:
+      - status
+    SearchResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: OK
+        data:
+          $ref: '#/components/schemas/SearchData'
+      required:
+      - status
+      - data
 externalDocs:
   description: Dataverse Native API guide
   url: https://guides.dataverse.org/en/latest/api/native-api.html

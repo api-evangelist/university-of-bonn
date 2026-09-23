@@ -1,0 +1,94 @@
+generated: '2026-09-01'
+method: probed
+source: >-
+  Live HTTP probes of uni-bonn.de authentication surfaces on 2026-09-01, plus the DFN-AAI
+  federation metadata aggregate (mdq.aai.dfn.de) and the university's own published IdP
+  metadata. No vendor authorization server is described here and no scheme is asserted
+  from documentation alone.
+description: >-
+  The University of Bonn operates its own authentication estate and publishes no public API
+  authorization server. Its one genuinely public API surface — the bonndata Dataverse read
+  subset and the two OAI-PMH endpoints — requires no credentials at all; everything
+  credentialed terminates at the institution's Shibboleth Identity Provider or at a
+  per-account token issued by an institutional service. There is no developer self-service
+  path: an unaffiliated developer cannot obtain a token for any Bonn system.
+summary:
+  types:
+  - none
+  - saml2
+  - api_key
+  public_read_without_credentials: true
+  developer_self_service_tokens: false
+schemes:
+- name: No authentication (public read)
+  type: none
+  x-operator: institution
+  applies_to:
+  - https://bonndata.uni-bonn.de/api/search
+  - https://bonndata.uni-bonn.de/api/datasets
+  - https://bonndata.uni-bonn.de/api/info/version
+  - https://bonndata.uni-bonn.de/api/info/metrics/datasets
+  - https://bonndata.uni-bonn.de/oai
+  - https://bonndoc.ulb.uni-bonn.de/oai/request
+  - https://gitlab.uni-bonn.de/api/v4/projects
+  evidence: >-
+    All of the above returned 200 with real payloads to anonymous, un-credentialed requests
+    on 2026-09-01. The bonndata OpenAPI documents in this repo cover exactly this keyless
+    subset and nothing else.
+- name: Shibboleth SAML 2.0 Identity Provider
+  type: saml2
+  x-operator: institution
+  entity_id: https://shibboleth.uni-bonn.de/idp/shibboleth
+  metadata_url: https://shibboleth.uni-bonn.de/idp/shibboleth
+  scope: uni-bonn.de
+  federation: DFN-AAI (Deutsches Forschungsnetz Authentication and Authorization Infrastructure)
+  federation_metadata: https://mdq.aai.dfn.de/entities/
+  registration_authority: https://www.aai.dfn.de
+  entity_categories:
+  - DFN-AAI-IdP
+  - http://aai.dfn.de/category/idm.nrw-member
+  bindings:
+  - urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect
+  - urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST
+  - urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign
+  endpoints:
+    sso: https://shibboleth.uni-bonn.de/idp/profile/SAML2/POST/SSO
+    slo: https://shibboleth.uni-bonn.de/idp/profile/SAML2/Redirect/SLO
+    artifact_resolution: https://shibboleth.uni-bonn.de:8443/idp/profile/SAML2/SOAP/ArtifactResolution
+  evidence: >-
+    Metadata fetched from the institution's own host (200, 12,145 bytes) and from the
+    DFN-AAI aggregate (11,457 EntityDescriptors; this is the only uni-bonn.de entity in
+    it), signed, on 2026-09-01. Observed in use: the BASIS student-information system
+    (basis.uni-bonn.de) names Shibboleth and the Uni-ID on its sign-in page, and eCampus
+    (ILIAS) offers SAML sign-in with the Uni-ID.
+- name: Dataverse API token (X-Dataverse-key)
+  type: api_key
+  x-operator: institution
+  in: header
+  parameter_name: X-Dataverse-key
+  self_service: false
+  evidence: >-
+    Credentialed Dataverse endpoints answer anonymously with a token-shaped error rather
+    than a wall: GET https://bonndata.uni-bonn.de/api/users/:me returned 400
+    {"status":"ERROR","message":"User with token null not found."} on 2026-09-01. Tokens
+    are issued to authenticated bonndata accounts, which require a Uni-ID or an affiliated
+    login; there is no public sign-up.
+- name: GitLab personal access token
+  type: api_key
+  x-operator: institution
+  in: header
+  parameter_name: PRIVATE-TOKEN
+  self_service: false
+  evidence: >-
+    The self-hosted GitLab at gitlab.uni-bonn.de serves its public project set anonymously
+    but closes privileged endpoints: GET /api/v4/metadata and GET /api/v4/version both
+    returned 401 {"message":"401 Unauthorized"} on 2026-09-01. Tokens require a university
+    account.
+not_found:
+- oauth2: >-
+    No OAuth 2.0 or OIDC authorization server, discovery document
+    (/.well-known/openid-configuration) or client-registration path was found on any
+    uni-bonn.de host.
+- developer_portal: >-
+    No developer portal, key-request form or API terms-of-use page exists; there is nothing
+    to sign up for.
