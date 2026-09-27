@@ -205,6 +205,17 @@ components:
       - name
       - type
       - url
+    SearchResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: OK
+        data:
+          $ref: '#/components/schemas/SearchData'
+      required:
+      - status
+      - data
     SearchData:
       type: object
       properties:
@@ -247,17 +258,6 @@ components:
           type: string
       required:
       - status
-    SearchResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          example: OK
-        data:
-          $ref: '#/components/schemas/SearchData'
-      required:
-      - status
-      - data
 externalDocs:
   description: Dataverse Native API guide
   url: https://guides.dataverse.org/en/latest/api/native-api.html
