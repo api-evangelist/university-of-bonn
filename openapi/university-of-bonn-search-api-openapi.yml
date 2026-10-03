@@ -128,6 +128,17 @@ paths:
                 $ref: '#/components/schemas/ApiEnvelope'
 components:
   schemas:
+    SearchResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: OK
+        data:
+          $ref: '#/components/schemas/SearchData'
+      required:
+      - status
+      - data
     SearchItem:
       type: object
       description: A single search hit. Fields shown are those returned for datasets.
@@ -205,17 +216,22 @@ components:
       - name
       - type
       - url
-    SearchResponse:
+    ApiEnvelope:
       type: object
+      description: Standard Dataverse API response envelope.
       properties:
         status:
           type: string
-          example: OK
+          enum:
+          - OK
+          - ERROR
         data:
-          $ref: '#/components/schemas/SearchData'
+          type: object
+          additionalProperties: true
+        message:
+          type: string
       required:
       - status
-      - data
     SearchData:
       type: object
       properties:
@@ -242,22 +258,6 @@ components:
       - total_count
       - start
       - items
-    ApiEnvelope:
-      type: object
-      description: Standard Dataverse API response envelope.
-      properties:
-        status:
-          type: string
-          enum:
-          - OK
-          - ERROR
-        data:
-          type: object
-          additionalProperties: true
-        message:
-          type: string
-      required:
-      - status
 externalDocs:
   description: Dataverse Native API guide
   url: https://guides.dataverse.org/en/latest/api/native-api.html
