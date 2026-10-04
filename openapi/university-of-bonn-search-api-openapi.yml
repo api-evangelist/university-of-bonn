@@ -139,6 +139,32 @@ components:
       required:
       - status
       - data
+    SearchData:
+      type: object
+      properties:
+        q:
+          type: string
+          example: '*'
+        total_count:
+          type: integer
+          example: 362
+        start:
+          type: integer
+          example: 0
+        spelling_alternatives:
+          type: object
+          additionalProperties: true
+        count_in_response:
+          type: integer
+          example: 2
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchItem'
+      required:
+      - total_count
+      - start
+      - items
     SearchItem:
       type: object
       description: A single search hit. Fields shown are those returned for datasets.
@@ -232,32 +258,6 @@ components:
           type: string
       required:
       - status
-    SearchData:
-      type: object
-      properties:
-        q:
-          type: string
-          example: '*'
-        total_count:
-          type: integer
-          example: 362
-        start:
-          type: integer
-          example: 0
-        spelling_alternatives:
-          type: object
-          additionalProperties: true
-        count_in_response:
-          type: integer
-          example: 2
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/SearchItem'
-      required:
-      - total_count
-      - start
-      - items
 externalDocs:
   description: Dataverse Native API guide
   url: https://guides.dataverse.org/en/latest/api/native-api.html
