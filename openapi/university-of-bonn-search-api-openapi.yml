@@ -128,17 +128,6 @@ paths:
                 $ref: '#/components/schemas/ApiEnvelope'
 components:
   schemas:
-    SearchResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          example: OK
-        data:
-          $ref: '#/components/schemas/SearchData'
-      required:
-      - status
-      - data
     SearchData:
       type: object
       properties:
@@ -165,6 +154,17 @@ components:
       - total_count
       - start
       - items
+    SearchResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: OK
+        data:
+          $ref: '#/components/schemas/SearchData'
+      required:
+      - status
+      - data
     SearchItem:
       type: object
       description: A single search hit. Fields shown are those returned for datasets.
