@@ -1,4 +1,4 @@
-# University of Bonn (university-of-bonn)
+# University of Bonn
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,57 +64,177 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-The University of Bonn (Rheinische Friedrich-Wilhelms-Universität Bonn) is a public research university in Bonn, Germany, ranked #227 in the QS World University Rankings 2025. This repository catalogs the institution's public developer and API footprint as an APIs.json provider profile. Its primary machine-readable surface is **bonndata**, the institutional research data repository built on the open-source Dataverse platform, exposing a public REST API and an OAI-PMH endpoint.
+The University of Bonn (Rheinische Friedrich-Wilhelms-Universitaet Bonn), founded in 1818, is a public research university in North Rhine-Westphalia, Germany, and a member of the German Universities Excellence Initiative. Like every institution it is a federation of buyers rather than an API producer, but it is an unusually self-hosted one: the surfaces in this profile run on the university's own hosts, inside its own computing centre, rather than on a vendor's multi-tenant platform. bonndata, the institutional cross-disciplinary research data repository, runs Dataverse 6.7.1 at bonndata.uni-bonn.de (CNAME bonndata-produktiv.rhrz.uni-bonn.de, 131.220.213.19) and exposes a genuinely public, anonymous, read-only REST API — /search, /datasets, /datasets/export, /info/version, /info/metrics — plus a full OAI-PMH 2.0 endpoint; every documented path was re-verified live on 2026-09-01 and /search returned 376 indexed datasets. bonndoc, the university publication server at bonndoc.ulb.uni-bonn.de, answers OAI-PMH in ten metadata formats. The university runs its own Shibboleth Identity Provider at shibboleth.uni-bonn.de and is the only uni-bonn.de entity in the 11,457-entity DFN-AAI federation aggregate. It self-hosts GitLab at gitlab.uni-bonn.de, whose REST API v4 answers anonymously across 195 public projects, and keeps a GitHub organization at github.com/unibonn. It is a DataCite member (BXBQ) minting DOIs under prefix 10.60507 through the bonndata repository client, is registered in ROR as 041nas322 and in re3data as r3d100014222. What it does NOT have is equally clear and is stated here rather than padded: no central developer portal, no institution-authored OpenAPI or AsyncAPI, no llms.txt, sitemap.xml, apis.json or agent card on any host it controls, no public course, timetable or student-information API (BASIS runs HISinOne behind sign-in, eCampus runs ILIAS), and no institutional open-data portal — opendata.bonn.de belongs to the City of Bonn, not the university. Library discovery (bonnus) is Ex Libris Primo, self-hosted on a university IP, with no public API. The four OpenAPI documents in this repo are API-Evangelist-authored descriptions of the public read subset of the Dataverse Native API as deployed by Bonn; the Dataverse contract itself belongs to the Dataverse project, and no vendor specification is saved under this institution.
 
-- APIs.json: https://raw.githubusercontent.com/api-evangelist/university-of-bonn/refs/heads/main/apis.yml
-- Run with Naftiko: https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=university-of-bonn-api-evangelist&utm_content=repo
+**Areas:** University · Higher Education · Education · Germany · Public Research University · Research Data · Open Data · Open Science · Institutional Repository · Dataverse · OAI-PMH · Identity Federation
 
-## Type
+## University of Bonn on APIs.io
 
-- Index
-- Consumer
-- 3rd-Party
+Everything profiled for University of Bonn is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/university-of-bonn/](https://apis.io/providers/university-of-bonn/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (12)
 
-Education, Higher Education, University, Research Data, Open Data, Germany
+- [bonndata OAI-PMH Metadata Endpoint](https://apis.io/apis/university-of-bonn/bonndata-oai-pmh/) — OAI-PMH 2.0 metadata-harvesting endpoint for bonndata, the University of Bonn institutional research data repository. Re-verified live 2026-09-01:…
+- [University of Bonn Datasets API](https://apis.io/apis/university-of-bonn/university-of-bonn-datasets-api/) — Retrieve published datasets, their versions, and export metadata from bonndata. Re-verified live 2026-09-01:…
+- [University of Bonn Info API](https://apis.io/apis/university-of-bonn/university-of-bonn-info-api/) — Repository version and software information for bonndata. Re-verified live 2026-09-01: GET /info/version returned…
+- [University of Bonn Metrics API](https://apis.io/apis/university-of-bonn/university-of-bonn-metrics-api/) — Aggregate repository metrics for bonndata. Re-verified live 2026-09-01: GET /info/metrics/datasets returned {"status":"OK","data":{"count":376}}. Note the…
+- [University of Bonn Search API](https://apis.io/apis/university-of-bonn/university-of-bonn-search-api/) — Search the published catalog of datasets, dataverses and files in bonndata. Re-verified live 2026-09-01: /search?q=*&type=dataset returned total_count 376…
+- [bonndoc Publication Server OAI-PMH Endpoint](https://apis.io/apis/university-of-bonn/bonndoc-oai-pmh/) — OAI-PMH 2.0 endpoint for bonndoc, "Der Publikationsserver der Universitaet Bonn" — the university's DSpace-based publication and dissertation server,…
+- [bonndoc DSpace REST API (bot-challenged)](https://apis.io/apis/university-of-bonn/bonndoc-dspace-rest/) — bonndoc runs DSpace 7-class software, which exposes a HAL/JSON REST API at /server/api. It is recorded with an honest limit rather than as a working…
+- [University of Bonn GitLab REST API v4](https://apis.io/apis/university-of-bonn/gitlab-api/) — The University of Bonn self-hosts GitLab at gitlab.uni-bonn.de and its REST API v4 answers anonymous callers over the public project set. Verified live…
+- [DFN-AAI Identity Federation — University of Bonn Shibboleth IdP](https://apis.io/apis/university-of-bonn/dfn-aai-idp/) — The University of Bonn operates its own SAML 2.0 / Shibboleth Identity Provider and publishes signed metadata from its own host —…
+- [DataCite Membership — University of Bonn (BXBQ)](https://apis.io/apis/university-of-bonn/datacite-member/) — The University of Bonn is a DataCite member organization and mints DOIs for its research data. Verified 2026-09-01 at…
+- [ROR Registry Record — University of Bonn](https://apis.io/apis/university-of-bonn/ror-record/) — The University of Bonn's Research Organization Registry identifier, https://ror.org/041nas322, verified live 2026-09-01. Domain uni-bonn.de, established…
+- [re3data Registry Record — bonndata](https://apis.io/apis/university-of-bonn/re3data-record/) — bonndata is registered in re3data, the Registry of Research Data Repositories, as r3d100014222 with its own DOI https://doi.org/10.17616/R31NJNGU. Verified…
 
-## APIs
+### Published properties
 
-- **bonndata Dataverse Native REST API** — Public REST search/data-access API for the bonndata research data repository (Dataverse). Docs: https://guides.dataverse.org/en/latest/api/native-api.html — Base: https://bonndata.uni-bonn.de/api
-- **bonndata OAI-PMH Metadata Endpoint** — OAI-PMH metadata harvesting endpoint for bonndata. Docs: https://guides.dataverse.org/en/latest/admin/harvestserver.html — Base: https://bonndata.uni-bonn.de/oai
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Plans
+#### Agentic access (1)
 
-- [plans/university-of-bonn-plans-pricing.yml](plans/university-of-bonn-plans-pricing.yml)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-## Rate Limits
+- [University Of Bonn Agentic Access](https://apis.io/agentic-access/university-of-bonn/university-of-bonn-agentic-access/)
 
-- [rate-limits/university-of-bonn-rate-limits.yml](rate-limits/university-of-bonn-rate-limits.yml)
+#### JSON Schema (2)
 
-## FinOps
+The data models the API reads and writes.
 
-- [finops/university-of-bonn-finops.yml](finops/university-of-bonn-finops.yml)
+- [bonnDataSearchItem](https://apis.io/schemas/university-of-bonn/university-of-bonn-search-item/)
+- [bonnDataSearchResponse](https://apis.io/schemas/university-of-bonn/university-of-bonn-search-response/)
 
-## Timestamps
+#### JSON Structure (1)
 
-- Created: 2026-06-03
-- Modified: 2026-06-03
+Data models expressed in JSON Structure.
 
-## Common Properties
+- [University Of Bonn Dataset Structure](https://apis.io/json-structure/university-of-bonn/university-of-bonn-dataset-structure/)
 
-- Website: https://www.uni-bonn.de/en
-- GitHub: https://github.com/unibonn
-- LinkedIn: https://www.linkedin.com/school/university-of-bonn/
-- Plans: plans/university-of-bonn-plans-pricing.yml
-- RateLimits: rate-limits/university-of-bonn-rate-limits.yml
-- FinOps: finops/university-of-bonn-finops.yml
-- Review: review.yml
+#### JSON-LD (1)
 
-## Notes
+Linked-data contexts for the provider's vocabulary.
 
-All cataloged APIs were verified live on 2026-06-03: the bonndata Dataverse search API returned JSON (362 indexed records) and the OAI-PMH endpoint returned a valid response to `verb=Identify`. The `unibonn` GitHub organization was confirmed (158 public repositories). No separately branded university developer portal, public student/timetable SIS API, or documented public library (Alma/Primo) API was found; those systems run on standard vendor platforms without published public developer docs. The City of Bonn operates a municipal open-data portal (opendata.bonn.de), which is distinct from the university. No endpoints were fabricated.
+- [University Of Bonn Context](https://apis.io/jsonld/university-of-bonn/university-of-bonn-context/)
 
-## Maintainers
+#### Vocabulary (1)
 
-- Kin Lane — kin@apievangelist.com
+The provider's domain terms, defined.
+
+- [bonndata Native API Vocabulary](https://apis.io/vocabularies/university-of-bonn/university-of-bonn-vocabulary/)
+
+#### Examples (3)
+
+Example requests and responses.
+
+- [University Of Bonn Info Version Example](https://apis.io/examples/university-of-bonn/university-of-bonn-info-version-example/)
+- [University Of Bonn Metrics Datasets Example](https://apis.io/examples/university-of-bonn/university-of-bonn-metrics-datasets-example/)
+- [University Of Bonn Search Example](https://apis.io/examples/university-of-bonn/university-of-bonn-search-example/)
+
+#### Collections (4)
+
+Postman and Open Collection request collections.
+
+- [bonndata Dataverse Native REST API (Public Read Subset) Datasets API](https://apis.io/collections/university-of-bonn/open-university-of-bonn-datasets-api/)
+- [bonndata Dataverse Native REST API (Public Read Subset) Datasets Info API](https://apis.io/collections/university-of-bonn/open-university-of-bonn-info-api/)
+- [bonndata Dataverse Native REST API (Public Read Subset) Datasets Metrics API](https://apis.io/collections/university-of-bonn/open-university-of-bonn-metrics-api/)
+- [bonndata Dataverse Native REST API (Public Read Subset) Datasets Search API](https://apis.io/collections/university-of-bonn/open-university-of-bonn-search-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [University of Bonn — jsonschema rules](https://apis.io/rules/university-of-bonn/university-of-bonn-jsonschema-spectral-rules/)
+- [University of Bonn API Rules](https://apis.io/rules/university-of-bonn/university-of-bonn-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [University Of Bonn Authentication](https://apis.io/security/university-of-bonn/university-of-bonn-authentication/)
+- [University Of Bonn Domain Security](https://apis.io/security/university-of-bonn/university-of-bonn-domain-security/)
+- [University Of Bonn Vulnerability Disclosure](https://apis.io/security/university-of-bonn/university-of-bonn-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [University Of Bonn Plans Pricing](https://apis.io/plans/university-of-bonn/university-of-bonn-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [University Of Bonn Rate Limits](https://apis.io/rate-limits/university-of-bonn/university-of-bonn-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [University Of Bonn Finops](https://apis.io/finops/university-of-bonn/university-of-bonn-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.uni-bonn.de/en)
+- [Documentation](https://guides.dataverse.org/en/latest/api/native-api.html)
+- [Support](https://www.hrz.uni-bonn.de/en)
+- [Blog](https://www.uni-bonn.de/news/rss.xml)
+- [Terms of service](https://www.uni-bonn.de/en/imprint)
+- [Privacy policy](https://www.uni-bonn.de/en/data-protection)
+- [GitHub](https://github.com/unibonn)
+
+## API Evangelist rating
+
+**Kin Score 42.7** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 76.8 |
+| Contract quality | 50.9 |
+| Contract governance | 28.0 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 28.6 |
+| Access clarity | 39.5 |
+
+**Agent readiness 22.7** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 38.2** — Education & Research
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/university-of-bonn/](https://apis.io/providers/university-of-bonn/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for University of Bonn: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/university-of-bonn/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
